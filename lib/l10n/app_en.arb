@@ -18,10 +18,339 @@
   "shareTitle": "Share your experience",
   "signsTitle": "Signs of diabetes",
   "signsIntro": "Common signs to know about. Only a blood test can tell.",
+  "signThirstyTitle": "Very thirsty",
+  "signThirstyNote": "Drinking much more than usual",
+  "signUrinatingTitle": "Urinating often",
+  "signUrinatingNote": "Especially waking up at night",
+  "signTiredTitle": "Tired all the time",
+  "signTiredNote": "Even after resting",
+  "signWeightTitle": "Losing weight without trying",
+  "signWeightNote": "Not from diet or exercise",
+  "signHungryTitle": "Always hungry",
+  "signHungryNote": "Hungry soon after eating",
+  "signVisionTitle": "Blurry vision",
+  "signVisionNote": "Comes and goes",
+  "signCutsTitle": "Cuts heal slowly",
+  "signCutsNote": "Or infections keep coming back",
+  "signTinglingTitle": "Tingling hands or feet",
+  "signTinglingNote": "Numbness or pins and needles",
+  "signsConsult": "Noticed any of these? Consult a doctor. They can arrange a fasting glucose or HbA1c test.",
+  "signsFindTest": "Find a test near me",
+  "signsFindTestQuery": "diabetes blood test lab near me",
+  "signsFindTestFailed": "Couldn't open maps. Please ask your doctor or a nearby lab.",
+  "numbersTitle": "Know your numbers",
+  "numbersTest": "Test",
+  "numbersNormal": "Normal",
+  "numbersPre": "Pre",
+  "numbersDiabetes": "Diabetes",
+  "numbersFasting": "Fasting",
+  "numbersFastingUnit": "mg/dL",
+  "numbersFastingNormal": "under 100",
+  "numbersFastingPre": "100–125",
+  "numbersFastingDiabetes": "126+",
+  "numbersA1c": "HbA1c",
+  "numbersA1cUnit": "3-month avg",
+  "numbersA1cNormal": "under 5.7%",
+  "numbersA1cPre": "5.7–6.4%",
+  "numbersA1cDiabetes": "6.5%+",
+  "urgentTitle": "Get help right away if you notice",
+  "urgentBody": "Confusion or fainting, shaking and heavy sweating, very fast breathing, fruity-smelling breath, or vomiting with very high sugar.",
+  "urgentCall": "Call emergency {number}",
+  "@urgentCall": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "urgentCallFailed": "Couldn't open the phone. Please dial {number} now.",
+  "@urgentCallFailed": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "sourceAda": "Source: American Diabetes Association.",
   "healthyTitle": "Stay healthy",
   "healthyIntro": "Small daily habits that lower your risk — for everyone, with or without diabetes.",
+  "plateTitle": "The healthy plate",
+  "plateSemantics": "Plate: half vegetables, a quarter protein, a quarter whole grains",
+  "plateVegetables": "vegetables & salad",
+  "plateProtein": "protein — daal, eggs, chicken",
+  "plateGrains": "whole grains — chapati, brown rice",
+  "plateWater": "Drink water instead of sugary drinks.",
+  "riskTitle": "Are you at higher risk?",
+  "riskAge": "Age 35 or older",
+  "riskFamily": "Parent, brother or sister with diabetes",
+  "riskWeight": "Extra weight, especially around the waist",
+  "riskActivity": "Little physical activity",
+  "riskPregnancy": "Had diabetes during pregnancy",
+  "riskSouthAsian": "South Asian family background",
+  "checkedTitle": "Get checked, even if you feel fine",
+  "checkedBody": "Adults 35 and over should test blood sugar at least every 3 years — sooner and more often with any risk above. Ask your doctor.",
   "firefliesTitle": "Fireflies",
   "firefliesIntro": "You're not the only one awake.",
   "settingsTitle": "Settings",
-  "notificationsTitle": "Notifications"
+  "notificationsTitle": "Notifications",
+  "actionTryAgain": "Try again",
+  "actionContinue": "Continue",
+  "actionSkip": "Skip",
+  "actionDone": "Done",
+  "actionPost": "Post",
+  "actionSave": "Save",
+  "actionDelete": "Delete",
+  "actionReport": "Report",
+  "actionsTitle": "Options",
+  "errorTitle": "Something went wrong",
+  "errorBody": "Please check your connection and try again.",
+  "welcomeTitle": "A circle of people who understand.",
+  "welcomeBody": "Share your experience, read others' stories, and learn the signs of diabetes.",
+  "signInGoogle": "Continue with Google",
+  "signInApple": "Continue with Apple",
+  "signInEmail": "Continue with email",
+  "signInEmailTitle": "Continue with email",
+  "signInEmailLabel": "Email",
+  "signInPasswordLabel": "Password",
+  "signInEmailInvalid": "Please enter a valid email address.",
+  "signInPasswordTooShort": "Use at least {count} characters.",
+  "@signInPasswordTooShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "consentTitle": "Before you join",
+  "consentNicknameLabel": "Nickname",
+  "consentNicknameHint": "A first name or any name you like",
+  "rulesTitle": "Community rules",
+  "rulesBody": "Share your experiences and be kind. Never tell anyone to start, stop or change a medicine. No selling, links or phone numbers.",
+  "consentAdult": "I am 18 or older.",
+  "consentCaution": "I understand GlucoCircle shares general information and members' own experiences, not medical advice, and that I should always consult my doctor. I agree to the Terms and Privacy Policy.",
+  "onboardingTitle": "What brings you to GlucoCircle?",
+  "onboardingBody": "We'll show you the stories and topics that fit. Pick any, or skip.",
+  "interestType1Title": "Type 1 diabetes",
+  "interestType1Note": "Stories and daily life",
+  "interestType2Title": "Type 2 diabetes",
+  "interestType2Note": "Food, activity, daily life",
+  "interestPrediabetesTitle": "Prediabetes",
+  "interestPrediabetesNote": "What others have tried",
+  "interestPregnancyTitle": "Diabetes in pregnancy",
+  "interestPregnancyNote": "Gestational diabetes support",
+  "interestCaringTitle": "Caring for someone",
+  "interestCaringNote": "Parent, child or partner",
+  "interestHealthyTitle": "Staying healthy",
+  "interestHealthyNote": "Know the signs",
+  "topicAll": "All",
+  "topicNewlyDiagnosed": "Newly diagnosed",
+  "topicType1": "Type 1",
+  "topicType2": "Type 2",
+  "topicGestational": "Gestational",
+  "topicFood": "Food",
+  "topicCaregivers": "Caregivers",
+  "topicExercise": "Exercise",
+  "moodGood": "Good",
+  "moodOkay": "Okay",
+  "moodLow": "Low",
+  "moodStruggling": "Struggling",
+  "feelingTagGood": "Feeling good",
+  "feelingTagOkay": "Feeling okay",
+  "feelingTagLow": "Feeling low",
+  "feelingTagStruggling": "Struggling",
+  "anonymous": "Anonymous",
+  "anonymousMember": "Anonymous member",
+  "relateCount": "I relate · {count}",
+  "@relateCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "replyCount": "{count, plural, =1{1 reply} other{{count} replies}}",
+  "@replyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "awaitingReview": "Waiting for a quick review. Only you can see this for now.",
+  "timeNow": "now",
+  "timeMinutes": "{count}m",
+  "@timeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHours": "{count}h",
+  "@timeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "timeDays": "{count}d",
+  "@timeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "feedEmptyTitle": "Be the first to share",
+  "feedEmptyTopicTitle": "Nothing here yet",
+  "feedEmptyBody": "Your story could be what someone needs to read today.",
+  "shareMoodQuestion": "How are you feeling today?",
+  "shareTextQuestion": "What would you like to share?",
+  "shareTextHint": "How you feel, what helped, a question for others…",
+  "shareTopic": "Topic",
+  "shareAnonTitle": "Post anonymously",
+  "shareAnonBody": "Your name stays hidden",
+  "shareKindNote": "Be kind. Share what worked for you, but please don't give medicine or dose advice — every body is different. Always check with your doctor.",
+  "postHeld": "Thanks. A moderator will check this before others can see it.",
+  "replyHint": "Write something kind…",
+  "replySend": "Send reply",
+  "repliesEmptyTitle": "No replies yet",
+  "repliesEmptyBody": "A kind word goes a long way.",
+  "postGoneTitle": "This post isn't available",
+  "postGoneBody": "It may have been removed.",
+  "reportTitlePost": "Report this post",
+  "reportTitleReply": "Report this reply",
+  "reportTitleGlow": "Report this glow",
+  "reportTitlePerson": "Report this person",
+  "reportPrivate": "Reports are private. The person won't know who reported them.",
+  "reportQuestion": "What's wrong with it?",
+  "reportSend": "Send report",
+  "reportDangerousTitle": "Dangerous medical advice",
+  "reportDangerousNote": "e.g. telling people to stop medicine",
+  "reportSellingTitle": "Selling products or \"cures\"",
+  "reportSellingNote": "Ads, fake remedies, scams",
+  "reportBullyingTitle": "Bullying or harassment",
+  "reportBullyingNote": "Shaming, insults, threats",
+  "reportDangerTitle": "Someone may be in danger",
+  "reportDangerNote": "A moderator will look at this first",
+  "reportSpamTitle": "Spam or something else",
+  "reportSpamNote": "Off-topic or repeated posts",
+  "reportSentTitle": "Thanks for keeping the circle safe",
+  "reportSentBody": "Our moderators will review this within 24 hours. Posts with dangerous medical advice are hidden while they're checked.",
+  "blockAction": "Block this person",
+  "blockConfirmTitle": "Block this person?",
+  "blockConfirmBody": "You won't see their posts, replies or glows. They won't be told.",
+  "unblockAction": "Unblock",
+  "blockedEmptyTitle": "No one is blocked",
+  "blockedEmptyBody": "People you block will be listed here.",
+  "inboxEmptyTitle": "Nothing yet",
+  "inboxEmptyBody": "Replies and warmth from others will show up here.",
+  "inboxReply": "{who} replied to your post",
+  "@inboxReply": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      }
+    }
+  },
+  "inboxWarmth": "{who} sent you warmth",
+  "@inboxWarmth": {
+    "placeholders": {
+      "who": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsTopics": "My topics",
+  "settingsBlocked": "Blocked people",
+  "settingsPrivacy": "Privacy policy",
+  "settingsTerms": "Terms",
+  "settingsContact": "Contact us",
+  "settingsLicences": "Licences",
+  "settingsSignOut": "Sign out",
+  "deleteAccountTitle": "Delete account",
+  "deleteAccountBody": "This permanently deletes your account, posts and replies. It can't be undone.",
+  "deleteAccountConfirm": "Delete my account",
+  "skyLegend": "Brighter = waiting longer",
+  "skyCount": "{count, plural, =1{1 person feels like you right now.} other{{count} people feel like you right now.}}",
+  "@skyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skyEmptyAll": "You're the first firefly right now. Light your glow and others will find you.",
+  "skyEmptyFilter": "No one is glowing with this feeling right now.",
+  "skyNext": "Next firefly",
+  "glowMeta": "{country} · waiting {minutes} min",
+  "@glowMeta": {
+    "placeholders": {
+      "country": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "sendWarmth": "Send warmth",
+  "warmthSent": "Warmth sent",
+  "lightMyGlow": "Light my glow",
+  "seeMyGlow": "See my glow",
+  "glowCantSleep": "Can't sleep",
+  "glowAfterLow": "After a low",
+  "glowSugarHigh": "Sugar is high",
+  "glowNewDiagnosis": "New diagnosis",
+  "glowFeelingHeavy": "Feeling heavy",
+  "glowJustCompany": "Just want company",
+  "glowDuration15": "15 min",
+  "glowDuration30": "30 min",
+  "glowDuration60": "1 hour",
+  "glowDurationDawn": "Till dawn",
+  "glowPrivacy": "Only your nickname and country are shown",
+  "glowTitle": "Light your glow",
+  "glowSubtitle": "Let others who feel the same find you.",
+  "glowQuestion": "What's keeping you up?",
+  "glowLineLabel": "Say it in one line",
+  "glowLineHint": "e.g. Can't switch my mind off…",
+  "glowHeld": "Please reword this. Links, phone numbers and medicine instructions can't be shared here.",
+  "glowDurationLabel_": "Glow for",
+  "glowFootnote": "Fireflies is for sharing feelings, not medical advice. Your glow fades on its own.",
+  "glowStart": "Glow quietly",
+  "cautionTitle": "First, take care of yourself",
+  "cautionBody": "GlucoCircle can't check or treat this. Follow the plan your doctor gave you. If you feel very unwell, get help now.",
+  "cautionContinue": "I'm okay, continue",
+  "glowingTimeLeft": "Glowing · {minutes} min left",
+  "@glowingTimeLeft": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quietTitle": "You're glowing quietly",
+  "quietBody": "No one can message you. People who feel the same can only send warmth.",
+  "quietNoWarmth": "Warmth from others will show up here",
+  "quietWarmthCount": "{count, plural, =1{1 person sent you warmth} other{{count} people sent you warmth}}",
+  "@quietWarmthCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quietGlowBack": "Glow back",
+  "quietDim": "Dim my glow",
+  "glowFadedTitle": "Your glow has faded",
+  "glowFadedBody": "Light it again whenever you need to.",
+  "reportDangerSent": "If someone is in immediate danger, don't wait for us. Call {number} now.",
+  "@reportDangerSent": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  }
 }

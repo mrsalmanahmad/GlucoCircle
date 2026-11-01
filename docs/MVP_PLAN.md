@@ -109,13 +109,13 @@ These are required for launch but have no design. Build them from the existing c
 ### Phase 1: First release to testers (Days 3-5)
 
 **Day 3, Wed 4 Nov: sign-in and onboarding** (screen 06)
-- [ ] Sign-in with Google, Apple and email, 18+ check, terms and caution consent.
-- [ ] Reworded onboarding: optional topic picker that can be skipped.
+- [ ] Sign-in with Google, Apple and email, 18+ check, terms and caution consent. (Screens done. Real sign-in needs Firebase.)
+- [x] Reworded onboarding: optional topic picker that can be skipped.
 
 **Day 4, Thu 5 Nov: info pages and settings** (screens 04, 05)
-- [ ] Signs and Healthy as read-only pages, with sources and the caution.
-- [ ] Emergency call button and maps search.
-- [ ] Settings with delete account, plus the web deletion page.
+- [x] Signs and Healthy as read-only pages, with sources and the caution.
+- [x] Emergency call button and maps search.
+- [ ] Settings with delete account, plus the web deletion page. (Settings screen done. Web page and real deletion need Firebase and a domain.)
 
 **Day 5, Fri 6 Nov: upload**
 - [ ] Firestore security rules. Privacy policy and terms published.
@@ -128,19 +128,19 @@ These are required for launch but have no design. Build them from the existing c
 ### Phase 2: Community (Days 6-9)
 
 **Day 6, Sat 7 Nov: feed** (screen 02)
-- [ ] Feed, topic filters, "I relate", caution line.
+- [x] Feed, topic filters, "I relate", caution line.
 
 **Day 7, Mon 9 Nov: posting** (screen 03)
-- [ ] Composer with mood, topic and anonymous option.
+- [x] Composer with mood, topic and anonymous option.
 - [ ] `createPost` Cloud Function with word filter (see Safety below).
 
 **Day 8, Tue 10 Nov: replies and inbox**
-- [ ] Post detail and replies.
+- [x] Post detail and replies.
 - [ ] Push notifications on both platforms (iOS needs an Apple push key) and bell inbox.
 
 **Day 9, Wed 11 Nov: report and block** (screen 08)
-- [ ] Report sheet with sent state, on posts and replies.
-- [ ] Block user, block list.
+- [x] Report sheet with sent state, on posts and replies.
+- [x] Block user, block list.
 - [ ] Hide reported "dangerous advice" until reviewed, and email the moderator.
 - [ ] Send build 2 to testers.
 
@@ -149,17 +149,17 @@ These are required for launch but have no design. Build them from the existing c
 ### Phase 3: Fireflies Lite (Days 10-12)
 
 **Day 10, Thu 12 Nov: night sky** (screen 09)
-- [ ] Sky with real glows only, animations, person card, feeling filters.
-- [ ] Honest empty sky state, for example "You're the first firefly tonight."
+- [x] Sky with real glows only, animations, person card, feeling filters.
+- [x] Honest empty sky state, for example "You're the first firefly tonight."
 
 **Day 11, Fri 13 Nov: lighting a glow** (screens 10, 11)
-- [ ] Light your glow: feeling, one line, duration.
-- [ ] Caution step that replaces the safety check. No blood sugar entry.
+- [x] Light your glow: feeling, one line, duration.
+- [x] Caution step that replaces the safety check. No blood sugar entry.
 - [ ] `createGlow` function with the same word filter. Glows expire on their own.
 
 **Day 12, Sat 14 Nov: warmth** (screen 12)
-- [ ] Quiet glow screen, Send warmth, Glow back, push notification.
-- [ ] Report and block on the person card. Community banner.
+- [x] Quiet glow screen, Send warmth, Glow back, push notification.
+- [x] Report and block on the person card. Community banner.
 - [ ] Send build 3 to testers.
 
 **Done when:** two phones can see each other's glow and exchange warmth, and glows disappear on time.
@@ -198,6 +198,22 @@ This waiting time is also the project's only buffer. If coding slips by a few da
 2. Fireflies Lite (moves to the next update, and the app still launches)
 
 **Never cut:** report and block, word filter, delete account, the caution text, doctor check of the info pages.
+
+## Temporary until Firebase is connected
+
+All v1.0 screens are built and run on in-app data behind `lib/data/`. Connecting Firebase means replacing the `InMemory...` classes, not rewriting screens. **A build must not go to the stores until every item here is done.**
+
+- [ ] **Sign-in is not real.** `SessionController` accepts anything. Connect Firebase Auth, including Google, Apple and forgot-password.
+- [ ] **Nothing is saved.** Posts, replies, glows and blocks are lost when the app restarts. Connect Firestore in `lib/data/providers.dart`.
+- [ ] **The word filter runs in the app.** Move `ContentFilter` into the `createPost` and `createGlow` Cloud Functions, because a check in the app can be bypassed.
+- [ ] **Author links are in memory.** Move them to the moderator-only `moderation/` collection, with a security rule and a test.
+- [ ] **Reports go nowhere.** Email the moderator, and build the review process in the Firestore console.
+- [ ] **No push notifications.** The inbox fills in, but nothing reaches the phone yet.
+- [ ] **Delete account only clears local data.** It must delete the Firebase account and data.
+- [ ] **Privacy policy, terms and contact details** show a placeholder in Settings. Write them and link them.
+- [ ] **Google and Apple sign-in buttons** must follow each company's branding rules.
+
+Sample people and posts load only in debug builds (`useSampleDataProvider`), so they can't reach a release build.
 
 ## Safety and privacy
 
