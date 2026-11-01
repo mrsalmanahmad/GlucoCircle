@@ -1,0 +1,117 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Constellation</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+input::placeholder{color:#8E97C4}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="padding: 50px 12px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #1E2650">
+    <a href="Fireflies.dc.html" aria-label="Back to the sky" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div aria-hidden="true" style="position: relative; width: 52px; height: 40px; flex-shrink: 0">
+      <span style="position: absolute; left: 6px; top: 8px; width: 30px; height: 1px; background: rgba(255, 200, 87, 0.5); transform: rotate(18deg); transform-origin: 0 0"></span>
+      <span style="position: absolute; left: 34px; top: 17px; width: 22px; height: 1px; background: rgba(255, 200, 87, 0.5); transform: rotate(120deg); transform-origin: 0 0"></span>
+      <span style="position: absolute; left: 6px; top: 8px; width: 28px; height: 1px; background: rgba(255, 200, 87, 0.5); transform: rotate(62deg); transform-origin: 0 0"></span>
+      <span style="position: absolute; left: 3px; top: 5px; width: 7px; height: 7px; border-radius: 4px; background: #FFC857; box-shadow: 0 0 7px 3px rgba(255, 200, 87, 0.5)"></span>
+      <span style="position: absolute; left: 31px; top: 14px; width: 7px; height: 7px; border-radius: 4px; background: #FFC857; box-shadow: 0 0 7px 3px rgba(255, 200, 87, 0.5)"></span>
+      <span style="position: absolute; left: 16px; top: 31px; width: 7px; height: 7px; border-radius: 4px; background: #FFC857; box-shadow: 0 0 7px 3px rgba(255, 200, 87, 0.5)"></span>
+      <span style="position: absolute; left: 42px; top: 30px; width: 6px; height: 6px; border-radius: 3px; background: #FFFFFF; box-shadow: 0 0 7px 3px rgba(255, 255, 255, 0.4)"></span>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+      <h1 style="margin: 0; font-size: 16px; font-weight: 800">After a low · 4 fireflies</h1>
+      <span style="font-size: 12px; color: #A9B0CF">Maria, Yusuf, Amina &amp; you · auto-translated</span>
+    </div>
+    <a href="Report.dc.html" aria-label="Report or leave" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #C9CDE3">
+      <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"></path><path d="M5 4h11l-2 4 2 4H5"></path></svg>
+    </a>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 16px">
+    <div style="background: #151C3B; border: 1px solid #3A3418; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: #FFC857">TONIGHT'S SPARK</span>
+      <span style="font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.4">What's one small thing that calms you after a low?</span>
+    </div>
+
+    <sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 4px; align-items: {{m.align}}">
+        <sc-if value="{{m.showName}}" hint-placeholder-val="{{ true }}">
+          <span style="font-size: 12px; font-weight: 700; color: #FFD98A">{{m.who}} <span style="font-weight: 500; color: #A9B0CF">· {{m.city}}</span></span>
+        </sc-if>
+        <div style="max-width: 80%; padding: 10px 14px; border-radius: {{m.radius}}; background: {{m.bg}}; color: {{m.fg}}; font-size: 15px; line-height: 1.45">{{m.text}}</div>
+        <sc-if value="{{m.translated}}" hint-placeholder-val="{{ false }}">
+          <button type="button" sc-camel-on-click="{{m.flip}}" style="border: 0; background: transparent; padding: 4px 0; min-height: 28px; color: #A9B0CF; font: inherit; font-size: 12px; cursor: pointer; text-decoration: underline">{{m.flipLabel}}</button>
+        </sc-if>
+      </div>
+    </sc-for>
+
+    <div role="note" style="display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: 14px; border: 1px dashed #4A3F6B; color: #C9CDE3; font-size: 13px; line-height: 1.45">
+      <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+      <span>A message was hidden because it suggested skipping insulin. Fireflies keep each other safe — <a href="Signs.dc.html">why we do this</a>.</span>
+    </div>
+    <div style="flex: 1"></div>
+  </main>
+
+  <form sc-camel-on-submit="{{submit}}" style="padding: 8px 12px 30px; display: flex; align-items: center; gap: 8px; border-top: 1px solid #1E2650">
+    <label for="gmsg" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Message the constellation</label>
+    <input id="gmsg" type="text" value="{{draft}}" sc-camel-on-change="{{onDraft}}" placeholder="Answer the spark…" style="flex: 1; min-width: 0; height: 44px; border-radius: 22px; border: 1px solid #323C6E; background: #151C3B; color: #F3F1EA; padding: 0 16px; font: inherit; font-size: 15px">
+    <button type="submit" aria-label="Send" style="width: 44px; height: 44px; flex-shrink: 0; border: 0; border-radius: 22px; background: #FFC857; color: #1A1300; cursor: pointer; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+    </button>
+  </form>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      draft: '', orig: {},
+      msgs: [
+        { who: 'Maria', city: 'Lisbon', text: 'Warm milk and my cat on my lap. And I tell myself the scary part is over.', original: 'Leite morno e o meu gato no colo. E digo a mim mesma que a parte assustadora já passou.', lang: 'Portuguese' },
+        { who: 'Yusuf', city: 'Riyadh', text: 'I write the number down. Seeing it go up again calms me more than anything.', original: 'أكتب الرقم. رؤيته يرتفع من جديد تهدئني أكثر من أي شيء.', lang: 'Arabic' },
+        { who: 'Amina', city: 'Nairobi', text: 'Honestly? Knowing you three are awake helps right now.' }
+      ]
+    };
+  }
+  renderVals() {
+    const o = this.state.orig;
+    return {
+      msgs: this.state.msgs.slice(-4).map((m, i) => {
+        const me = !!m.me;
+        const showOrig = !!o[i];
+        return {
+          who: m.who, city: m.city || '', showName: !me,
+          text: showOrig ? m.original : m.text,
+          translated: !!m.original,
+          flipLabel: showOrig ? 'Show translation' : 'Translated from ' + m.lang + ' · show original',
+          flip: () => this.setState({ orig: { ...this.state.orig, [i]: !this.state.orig[i] } }),
+          align: me ? 'flex-end' : 'flex-start',
+          radius: me ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+          bg: me ? '#FFC857' : '#1C2449', fg: me ? '#1A1300' : '#F3F1EA'
+        };
+      }),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      submit: (e) => {
+        e.preventDefault();
+        const t = this.state.draft.trim();
+        if (!t) return;
+        this.setState({ draft: '', msgs: this.state.msgs.concat([{ me: true, who: 'You', text: t }]) });
+      }
+    };
+  }
+}
+</script>
+
+
+</body></html>

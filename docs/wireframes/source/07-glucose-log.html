@@ -1,0 +1,190 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Glucose log</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 1100px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F6FA; color: #0F1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; position: relative; overflow: hidden">
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 52px 20px 24px">
+    <header style="display: flex; align-items: center; gap: 8px">
+      <a href="Main.dc.html" aria-label="Back to home" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #0F1A2E">
+        <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+      <h1 style="margin: 0; flex: 1; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">Glucose log</h1>
+      <button type="button" aria-label="Export for my doctor" style="height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #0F1A2E; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px">
+        <svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+        For doctor
+      </button>
+    </header>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+      <div style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 12px; color: #4F5B6E; font-weight: 600">Average</span>
+        <span style="font-size: 22px; font-weight: 800">{{avg}}</span>
+        <span style="font-size: 11px; color: #4F5B6E">mg/dL</span>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 12px; color: #4F5B6E; font-weight: 600">In target</span>
+        <span style="font-size: 22px; font-weight: 800; color: #166534">{{inTarget}}</span>
+        <span style="font-size: 11px; color: #4F5B6E">of mornings</span>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 12px; color: #4F5B6E; font-weight: 600">Highest</span>
+        <span style="font-size: 22px; font-weight: 800">{{max}}</span>
+        <span style="font-size: 11px; color: #4F5B6E">mg/dL</span>
+      </div>
+    </div>
+
+    <section aria-labelledby="chart-h" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 id="chart-h" style="margin: 0; font-size: 16px; font-weight: 700">Fasting, this week</h2>
+        <span style="font-size: 12px; color: #4F5B6E; display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 3px; background: #E3F4E8"></span>Target 80–130</span>
+      </div>
+      <div role="img" aria-label="{{chartLabel}}" style="position: relative; height: 180px; border-bottom: 1px solid #CBD3E1">
+        <div style="position: absolute; left: 0; right: 0; bottom: {{bandBottom}}; height: {{bandH}}; background: #E3F4E8; border-radius: 6px"></div>
+        <div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; align-items: end">
+          <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%">
+              <span style="font-size: 11px; font-weight: 700; color: {{d.labelColor}}">{{d.v}}</span>
+              <div style="width: 100%; max-width: 28px; height: {{d.h}}; border-radius: 8px 8px 3px 3px; background: {{d.color}}"></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; text-align: center; font-size: 12px; color: #4F5B6E; font-weight: 600">
+        <sc-for list="{{week}}" as="d" hint-placeholder-count="7"><span>{{d.day}}</span></sc-for>
+      </div>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #34405A; background: #F4F6FA; border-radius: 12px; padding: 10px 12px">Thursday was high. Late dinners can raise the next morning's reading — worth noting for your doctor.</p>
+    </section>
+
+    <section aria-labelledby="recent-h" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="recent-h" style="margin: 0; font-size: 18px; font-weight: 700">Recent readings</h2>
+      <div style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 20px; display: flex; flex-direction: column">
+        <sc-for list="{{readings}}" as="r" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #EEF1F6">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 15px; font-weight: 600">{{r.ctx}}</span>
+              <span style="font-size: 12px; color: #4F5B6E">{{r.when}}</span>
+            </div>
+            <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: {{r.tagBg}}; color: {{r.tagFg}}">{{r.status}}</span>
+            <span style="min-width: 44px; text-align: right; font-size: 17px; font-weight: 800">{{r.v}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+
+  <button type="button" sc-camel-on-click="{{openSheet}}" style="position: absolute; right: 20px; bottom: 100px; height: 52px; padding: 0 20px; border: 0; border-radius: 26px; background: #1E4FD8; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(30, 79, 216, 0.3)">
+    <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add reading</button>
+
+  <nav aria-label="Main" style="height: 80px; flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; background: #FFFFFF; border-top: 1px solid #E3E8F0; padding: 0 6px 10px">
+    <a href="Main.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #1E4FD8; font-size: 12px; font-weight: 700">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="Community.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"></path><path d="M18 14.3c2 .8 3.5 2.8 3.5 5.7"></path></svg>Community</a>
+    <a href="Share.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>Share</a>
+    <a href="Signs.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>Signs</a>
+    <a href="Healthy.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"></path><path d="M5 19l8-8"></path></svg>Healthy</a>
+  </nav>
+
+  <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(15, 26, 46, 0.45); display: flex; flex-direction: column; justify-content: flex-end">
+      <div role="dialog" aria-labelledby="sheet-h" style="background: #FFFFFF; border-radius: 28px 28px 0 0; padding: 12px 20px 32px; display: flex; flex-direction: column; gap: 16px">
+        <div aria-hidden="true" style="width: 40px; height: 5px; border-radius: 3px; background: #CBD3E1; align-self: center"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <h2 id="sheet-h" style="margin: 0; font-size: 20px; font-weight: 800">New reading</h2>
+          <button type="button" sc-camel-on-click="{{closeSheet}}" aria-label="Close" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #F4F6FA; color: #0F1A2E; cursor: pointer; display: flex; align-items: center; justify-content: center">
+            <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+          </button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <label for="val" style="font-size: 14px; font-weight: 700">Blood sugar (mg/dL)</label>
+          <input id="val" type="number" inputmode="numeric" placeholder="e.g. 112" value="{{draft}}" sc-camel-on-change="{{onDraft}}" style="height: 60px; border: 1px solid #CBD3E1; border-radius: 16px; padding: 0 16px; font: inherit; font-size: 26px; font-weight: 800; color: #0F1A2E; background: #F9FAFC">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span id="ctx-l" style="font-size: 14px; font-weight: 700">When was this?</span>
+          <div role="group" aria-labelledby="ctx-l" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{contexts}}" as="c" hint-placeholder-count="4">
+              <button type="button" sc-camel-on-click="{{c.pick}}" aria-pressed="{{c.pressed}}" style="height: 44px; border-radius: 12px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{c.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <button type="button" sc-camel-on-click="{{save}}" style="height: 54px; border: 0; border-radius: 16px; background: #1E4FD8; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer">Save reading</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1100}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sheet: false, draft: '', ctx: 'Fasting',
+      readings: [
+        { v: 108, ctx: 'Fasting', when: 'Today, 7:45 AM' },
+        { v: 124, ctx: 'Bedtime', when: 'Yesterday, 10:05 PM' },
+        { v: 152, ctx: 'After meal', when: 'Yesterday, 3:30 PM' },
+        { v: 101, ctx: 'Fasting', when: 'Yesterday, 7:50 AM' },
+        { v: 64, ctx: 'Before meal', when: 'Fri, 1:10 PM' }
+      ]
+    };
+  }
+  status(r) {
+    if (r.v < 70) return { status: 'Low', tagBg: '#FDECEC', tagFg: '#8F1B12' };
+    const hi = r.ctx === 'After meal' ? 180 : 130;
+    if (r.v > hi) return { status: 'High', tagBg: '#FFF4E5', tagFg: '#8A3D05' };
+    return { status: 'In target', tagBg: '#E8F5EC', tagFg: '#166534' };
+  }
+  renderVals() {
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const vals = [118, 104, 96, 142, 110, 101, 108];
+    const lo = 60, hi = 180, H = 150;
+    const px = (v) => Math.round(((v - lo) / (hi - lo)) * H) + 'px';
+    const avg = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+    const ok = vals.filter((v) => v >= 80 && v <= 130).length;
+    const ctxs = ['Fasting', 'Before meal', 'After meal', 'Bedtime'];
+    return {
+      avg, max: Math.max.apply(null, vals),
+      inTarget: Math.round((ok / vals.length) * 100) + '%',
+      bandBottom: Math.round(((80 - lo) / (hi - lo)) * H) + 'px',
+      bandH: Math.round(((130 - 80) / (hi - lo)) * H) + 'px',
+      chartLabel: 'Fasting readings this week: ' + days.map((d, i) => d + ' ' + vals[i]).join(', ') + ' mg/dL',
+      week: vals.map((v, i) => {
+        const out = v > 130 || v < 80;
+        return { day: days[i], v, h: px(v), color: out ? '#E07B39' : '#1E4FD8', labelColor: out ? '#8A3D05' : '#34405A' };
+      }),
+      readings: this.state.readings.slice(0, 5).map((r) => ({ ...r, ...this.status(r) })),
+      sheetOpen: this.state.sheet,
+      openSheet: () => this.setState({ sheet: true }),
+      closeSheet: () => this.setState({ sheet: false }),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      contexts: ctxs.map((c) => {
+        const on = this.state.ctx === c;
+        return { label: c, pressed: on ? 'true' : 'false', bg: on ? '#0F1A2E' : '#FFFFFF', fg: on ? '#FFFFFF' : '#34405A', border: on ? '#0F1A2E' : '#CBD3E1',
+          pick: () => this.setState({ ctx: c }) };
+      }),
+      save: () => {
+        const v = parseInt(this.state.draft, 10);
+        if (!v) { this.setState({ sheet: false }); return; }
+        this.setState({ sheet: false, draft: '', readings: [{ v, ctx: this.state.ctx, when: 'Just now' }].concat(this.state.readings) });
+      }
+    };
+  }
+}
+</script>
+
+
+</body></html>

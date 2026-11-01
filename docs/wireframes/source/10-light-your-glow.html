@@ -1,0 +1,138 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Light your glow</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+@keyframes ffglow{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.3);opacity:1}}
+.ff{animation:ffglow 3.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.ff{animation:none}}
+textarea::placeholder{color:#8E97C4}
+</style>
+</helmet>
+<div style="width: 390px; height: 1180px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; padding: 52px 20px 28px; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Fireflies.dc.html" style="min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 600; color: #C9CDE3; text-decoration: none">Cancel</a>
+    <span style="font-size: 13px; font-weight: 600; color: #A9B0CF">Only first name shown</span>
+  </header>
+
+  <div style="display: flex; align-items: center; gap: 16px">
+    <div aria-hidden="true" style="width: 64px; height: 64px; flex-shrink: 0; border-radius: 32px; border: 1px solid #323C6E; display: flex; align-items: center; justify-content: center">
+      <span class="ff" style="width: 20px; height: 20px; border-radius: 10px; background: #FFC857; box-shadow: 0 0 18px 7px rgba(255, 200, 87, 0.55)"></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.1">Light your glow</h1>
+      <p style="margin: 0; font-size: 14px; color: #C9CDE3">Let others who feel the same find you.</p>
+    </div>
+  </div>
+
+  <section aria-labelledby="feel-h" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="feel-h" style="margin: 0; font-size: 15px; font-weight: 700">What's keeping you up?</h2>
+    <div role="group" aria-labelledby="feel-h" style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{feelings}}" as="f" hint-placeholder-count="6">
+        <button type="button" sc-camel-on-click="{{f.pick}}" aria-pressed="{{f.pressed}}" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{f.label}}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 8px">
+    <label for="line" style="font-size: 15px; font-weight: 700">Say it in one line</label>
+    <textarea id="line" rows="2" maxlength="140" placeholder="e.g. Woke up with a low and can't switch my mind off…" style="box-sizing: border-box; width: 100%; resize: none; border: 1px solid #323C6E; border-radius: 16px; padding: 14px; background: #151C3B; color: #F3F1EA; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.45"></textarea>
+  </section>
+
+  <section aria-labelledby="how-h" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="how-h" style="margin: 0; font-size: 15px; font-weight: 700">How do you want to connect?</h2>
+    <div role="group" aria-labelledby="how-h" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{modes}}" as="m" hint-placeholder-count="4">
+        <button type="button" sc-camel-on-click="{{m.pick}}" aria-pressed="{{m.pressed}}" style="min-height: 60px; border-radius: 14px; border: 1px solid {{m.border}}; background: {{m.bg}}; color: {{m.fg}}; font: inherit; cursor: pointer; padding: 8px 12px; text-align: left; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 14px; font-weight: 700">{{m.label}}</span>
+          <span style="font-size: 12px; opacity: 0.85">{{m.note}}</span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-labelledby="match-h" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="match-h" style="margin: 0; font-size: 15px; font-weight: 700">Match me with</h2>
+    <div style="background: #151C3B; border: 1px solid #262F57; border-radius: 16px; display: flex; flex-direction: column">
+      <sc-for list="{{matches}}" as="t" hint-placeholder-count="4">
+        <button type="button" role="switch" sc-camel-on-click="{{t.toggle}}" aria-checked="{{t.checked}}" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 14px; border: 0; border-bottom: 1px solid #262F57; background: transparent; color: #F3F1EA; font: inherit; text-align: left; cursor: pointer">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 14px; font-weight: 700">{{t.label}}</span>
+            <span style="font-size: 12px; color: #A9B0CF">{{t.note}}</span>
+          </span>
+          <span aria-hidden="true" style="width: 44px; height: 26px; flex-shrink: 0; border-radius: 13px; background: {{t.track}}; display: flex; align-items: center; justify-content: {{t.side}}; padding: 3px; box-sizing: border-box">
+            <span style="width: 20px; height: 20px; border-radius: 10px; background: {{t.knob}}"></span>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-labelledby="dur-h" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="dur-h" style="margin: 0; font-size: 15px; font-weight: 700">Glow for</h2>
+    <div role="group" aria-labelledby="dur-h" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{durations}}" as="d" hint-placeholder-count="4">
+        <button type="button" sc-camel-on-click="{{d.pick}}" aria-pressed="{{d.pressed}}" style="height: 44px; border-radius: 14px; border: 1px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{d.label}}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="flex: 1"></div>
+  <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #A9B0CF">Fireflies is for sharing feelings, not medical advice. Your glow fades on its own and chats disappear after 24 hours.</p>
+  <a href="{{startHref}}" style="height: 56px; border-radius: 28px; background: #FFC857; color: #1A1300; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; text-decoration: none; box-shadow: 0 0 28px rgba(255, 200, 87, 0.35)">{{startLabel}}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1180}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { feeling: 'After a low', mode: 'Talk by text', dur: '30 min', match: { 0: true, 1: true, 2: true } };
+  }
+  chips(list, key) {
+    return list.map((l) => {
+      const label = typeof l === 'string' ? l : l.label;
+      const on = this.state[key] === label;
+      return { label, note: l.note || '', pressed: on ? 'true' : 'false', bg: on ? '#FFC857' : '#151C3B', fg: on ? '#1A1300' : '#E4E6F2', border: on ? '#FFC857' : '#323C6E',
+        pick: () => this.setState({ [key]: label }) };
+    });
+  }
+  renderVals() {
+    const matchOpts = [
+      { label: 'Same diabetes type', note: 'Type 1 with type 1, and so on' },
+      { label: 'My languages', note: 'Urdu, English · others auto-translated' },
+      { label: 'Someone who’s been there', note: 'Members with years of experience' },
+      { label: 'I can be a “been there” listener', note: 'Newly diagnosed people may find you' }
+    ];
+    const m = this.state.match;
+    const quiet = this.state.mode === 'Quiet glow';
+    const safety = this.state.feeling === 'After a low' || this.state.feeling === 'Sugar is high';
+    return {
+      feelings: this.chips(['Can’t sleep', 'After a low', 'Sugar is high', 'New diagnosis', 'Feeling heavy', 'Just want company'], 'feeling'),
+      modes: this.chips([
+        { label: 'Talk by text', note: 'One-to-one chat' },
+        { label: 'Voice notes', note: 'Speak instead of typing' },
+        { label: 'Small group', note: 'Join a constellation' },
+        { label: 'Quiet glow', note: 'No chat, just warmth' }
+      ], 'mode'),
+      matches: matchOpts.map((o, i) => {
+        const on = !!m[i];
+        return { ...o, checked: on ? 'true' : 'false', track: on ? '#FFC857' : '#323C6E', knob: on ? '#1A1300' : '#A9B0CF', side: on ? 'flex-end' : 'flex-start',
+          toggle: () => this.setState({ match: { ...this.state.match, [i]: !this.state.match[i] } }) };
+      }),
+      durations: this.chips(['15 min', '30 min', '1 hour', 'Till dawn'], 'dur'),
+      startHref: safety ? 'SafetyCheck.dc.html' : (quiet ? 'QuietGlow.dc.html' : 'Fireflies.dc.html'),
+      startLabel: quiet ? 'Glow quietly' : 'Start glowing'
+    };
+  }
+}
+</script>
+
+
+</body></html>

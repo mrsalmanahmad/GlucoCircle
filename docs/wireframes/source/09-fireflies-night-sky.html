@@ -1,0 +1,202 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Fireflies</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+@keyframes ffglow{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.4);opacity:1}}
+@keyframes ffpop{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes ffdrift{from{transform:translateX(6px)}to{transform:translateX(-6px)}}
+.ff{animation:ffglow 3.2s ease-in-out infinite}
+.ffpop{animation:ffpop .35s ease-out}
+.ffsky{animation:ffdrift 24s ease-in-out infinite alternate}
+@media (prefers-reduced-motion:reduce){.ff,.ffpop,.ffsky{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="padding: 50px 20px 0; display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 2">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Community.dc.html" aria-label="Back to community" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+        <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </a>
+      <span style="font-size: 12px; font-weight: 600; color: #A9B0CF; display: flex; align-items: center; gap: 6px">
+        <svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+        4:12 AM · Lahore · <span style="color: #FFD98A">Sunrise in 1h 58m</span>
+      </span>
+      <a href="Glow.dc.html" aria-label="Matching preferences" style="width: 44px; height: 44px; margin-right: -10px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+        <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>
+      </a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 34px; font-weight: 600; letter-spacing: -0.01em">Fireflies</h1>
+      <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #C9CDE3">You're not the only one awake. <span style="color: #FFC857; font-weight: 700">{{count}} people</span> feel like you right now.</p>
+    </div>
+    <div role="group" aria-label="What's keeping people up" style="display: flex; gap: 8px; overflow: hidden">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+        <button type="button" sc-camel-on-click="{{f.pick}}" aria-pressed="{{f.pressed}}" style="flex-shrink: 0; height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap">{{f.label}}</button>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-size: 11px; color: #A9B0CF; display: flex; gap: 12px">
+      <span>Brighter = waiting longer</span><span>Dashed ring = been there</span><span>★ trusted</span>
+    </p>
+  </header>
+
+  <div aria-hidden="true" style="position: absolute; left: -160px; right: -160px; top: 476px; height: 700px; border-radius: 50%; background: #121A3D; border-top: 1px solid #2A3570"></div>
+
+  <section aria-label="People awake now" class="ffsky" style="position: relative; height: 270px; flex-shrink: 0; margin: 0 8px">
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="18">
+      <span aria-hidden="true" style="position: absolute; left: {{s.x}}; top: {{s.y}}; width: 2px; height: 2px; border-radius: 1px; background: #8E97C4; opacity: {{s.o}}"></span>
+    </sc-for>
+    <sc-for list="{{lines}}" as="l" hint-placeholder-count="3">
+      <span aria-hidden="true" style="position: absolute; left: {{l.x}}; top: {{l.y}}; width: {{l.w}}; height: 1px; background: rgba(255, 200, 87, 0.45); transform: rotate({{l.a}}); transform-origin: 0 0"></span>
+    </sc-for>
+    <sc-if value="{{showConst}}" hint-placeholder-val="{{ true }}">
+      <a href="Constellation.dc.html" style="position: absolute; left: 222px; top: 114px; height: 34px; padding: 0 12px; border-radius: 17px; background: rgba(255, 200, 87, 0.14); border: 1px solid rgba(255, 200, 87, 0.6); color: #FFD98A; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; text-decoration: none; z-index: 1">
+        <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"></circle><circle cx="19" cy="9" r="2"></circle><circle cx="10" cy="19" r="2"></circle><path d="M7 6.5 17 8.5M18 11l-6.5 6.5M9.2 17 5.6 8"></path></svg>
+        Join constellation · 3
+      </a>
+    </sc-if>
+    <sc-for list="{{people}}" as="p" hint-placeholder-count="9">
+      <button type="button" sc-camel-on-click="{{p.pick}}" aria-label="{{p.aria}}" aria-pressed="{{p.pressed}}" style="position: absolute; left: {{p.x}}; top: {{p.y}}; width: 52px; height: 52px; margin: -26px 0 0 -26px; padding: 0; border: 0; border-radius: 26px; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2">
+        <span style="position: absolute; width: 40px; height: 40px; border-radius: 20px; border: 1.5px {{p.ringStyle}} {{p.ring}}"></span>
+        <span class="ff" style="width: {{p.size}}; height: {{p.size}}; border-radius: 50%; background: #FFC857; opacity: {{p.op}}; box-shadow: 0 0 14px 5px rgba(255, 200, 87, 0.55), 0 0 36px 12px rgba(255, 170, 60, 0.18); animation-delay: {{p.delay}}"></span>
+      </button>
+    </sc-for>
+  </section>
+
+  <div style="flex: 1"></div>
+
+  <sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+    <article class="ffpop" aria-live="polite" style="position: relative; z-index: 2; margin: 0 16px 12px; background: #F3F1EA; color: #141833; border-radius: 26px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45)">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div aria-hidden="true" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 22px; background: #141833; display: flex; align-items: center; justify-content: center">
+          <span style="width: 14px; height: 14px; border-radius: 7px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.6)"></span>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+          <span style="font-size: 16px; font-weight: 800">{{sel.name}} <span style="color: #9A6A00; font-size: 13px">{{sel.star}}</span></span>
+          <span style="font-size: 12px; color: #4A4F6B">{{sel.city}} · {{sel.time}} there · {{sel.lang}}</span>
+          <span style="font-size: 12px; color: #4A4F6B">{{sel.meta}} · waiting {{sel.waited}} min</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end">
+          <span style="font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #FFE9B8; color: #6B4300; white-space: nowrap">{{sel.feeling}}</span>
+          <sc-if value="{{sel.mentor}}" hint-placeholder-val="{{ false }}">
+            <span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; border: 1px dashed #4A4F6B; color: #34385A; white-space: nowrap">Been there</span>
+          </sc-if>
+        </div>
+      </div>
+      <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 16px; line-height: 1.45">“{{sel.text}}”</p>
+      <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr) minmax(0, 1fr); gap: 8px">
+        <button type="button" sc-camel-on-click="{{next}}" aria-label="Next firefly" style="height: 50px; border-radius: 16px; border: 1px solid #C9CBD8; background: transparent; color: #141833; cursor: pointer; display: flex; align-items: center; justify-content: center">
+          <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </button>
+        <button type="button" sc-camel-on-click="{{warm}}" aria-pressed="{{warmed}}" style="height: 50px; border-radius: 16px; border: 1px solid #C9CBD8; background: {{warmBg}}; color: #141833; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">{{warmLabel}}</button>
+        <a href="FireflyChat.dc.html" style="height: 50px; border-radius: 16px; background: #141833; color: #FFC857; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700; text-decoration: none">
+          <span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #FFC857; box-shadow: 0 0 8px 3px rgba(255, 200, 87, 0.6)"></span>Talk</a>
+      </div>
+    </article>
+  </sc-if>
+
+  <div style="position: relative; z-index: 2; padding: 0 16px 26px">
+    <a href="Glow.dc.html" style="height: 52px; border-radius: 26px; border: 1.5px solid #FFC857; color: #FFC857; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; text-decoration: none">
+      <span class="ff" aria-hidden="true" style="width: 10px; height: 10px; border-radius: 5px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.6)"></span>
+      Light my glow
+    </a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'All', sel: 0, warmed: {} };
+  }
+  renderVals() {
+    const people = [
+      { name: 'Maria', city: 'Lisbon', time: '11:12 PM', lang: 'Portuguese', feeling: 'After a low', meta: 'Type 1 · 9 yrs', waited: 36, mentor: true, trusted: true, group: true, x: 22, y: 18,
+        text: 'Woke up shaky, my sugar was 58. Had my glucose tabs, but now I can’t fall back asleep.' },
+      { name: 'Omar', city: 'Cairo', time: '1:12 AM', lang: 'Arabic', feeling: 'Can’t sleep', meta: 'Type 2 · 1 yr', waited: 19, x: 68, y: 12,
+        text: 'Up for the third time to use the bathroom. Readings have been high all week and I’m worried.' },
+      { name: 'Priya', city: 'Delhi', time: '4:42 AM', lang: 'Hindi', feeling: 'New diagnosis', meta: 'Diagnosed this week', waited: 52, x: 40, y: 10,
+        text: 'Got my HbA1c result yesterday. I haven’t told my family yet and I keep thinking about it.' },
+      { name: 'Fatima', city: 'Karachi', time: '4:12 AM', lang: 'Urdu', feeling: 'Feeling heavy', meta: 'Type 2 · caregiver', waited: 8, trusted: true, x: 84, y: 26,
+        text: 'Looking after my mother’s diabetes and my own. Some nights it’s just a lot.' },
+      { name: 'Yusuf', city: 'Riyadh', time: '2:12 AM', lang: 'Arabic', feeling: 'After a low', meta: 'Type 1 · 2 yrs', waited: 14, group: true, x: 54, y: 48,
+        text: 'My first night low since I started a new insulin dose. Heart still racing.' },
+      { name: 'James', city: 'London', time: '11:12 PM', lang: 'English', feeling: 'Can’t sleep', meta: 'Type 2 · 6 yrs', waited: 30, mentor: true, x: 12, y: 58,
+        text: 'Feet tingling again tonight. Does anyone else get this mostly at night?' },
+      { name: 'Amina', city: 'Nairobi', time: '2:12 AM', lang: 'Swahili', feeling: 'After a low', meta: 'Type 1 · 3 yrs', waited: 24, group: true, x: 32, y: 78,
+        text: 'Third night low this week. Scared to go back to sleep in case it happens again.' },
+      { name: 'Rahim', city: 'Dhaka', time: '5:12 AM', lang: 'Bengali', feeling: 'Feeling heavy', meta: 'Type 2 · 12 yrs', waited: 5, mentor: true, trusted: true, x: 66, y: 86,
+        text: 'Fasting check in an hour. Dreading the number after last night’s wedding food.' },
+      { name: 'Elif', city: 'Istanbul', time: '2:12 AM', lang: 'Turkish', feeling: 'New diagnosis', meta: 'Gestational · 28 wks', waited: 41, x: 88, y: 72,
+        text: 'Pregnant and just found out I have gestational diabetes. Is my baby going to be okay?' }
+    ];
+    const labels = ['All', 'Can’t sleep', 'After a low', 'New diagnosis', 'Feeling heavy'];
+    const f = this.state.filter;
+    const visible = people.map((p, i) => ({ ...p, i })).filter((p) => f === 'All' || p.feeling === f);
+    const selIdx = visible.some((p) => p.i === this.state.sel) ? this.state.sel : (visible[0] ? visible[0].i : -1);
+    const stars = [];
+    for (let k = 0; k < 18; k++) {
+      stars.push({ x: ((k * 37 + 11) % 97) + '%', y: ((k * 53 + 7) % 92) + '%', o: (0.25 + ((k * 7) % 5) * 0.12).toFixed(2) });
+    }
+    const W = 374, H = 270;
+    const grp = people.filter((p) => p.group);
+    const showConst = f === 'All' || f === 'After a low';
+    const lines = [];
+    if (showConst) {
+      for (let k = 0; k < grp.length; k++) {
+        const a = grp[k], b = grp[(k + 1) % grp.length];
+        const x1 = a.x * W / 100, y1 = a.y * H / 100, x2 = b.x * W / 100, y2 = b.y * H / 100;
+        const len = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        lines.push({ x: x1 + 'px', y: y1 + 'px', w: len.toFixed(1) + 'px', a: (Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI).toFixed(1) + 'deg' });
+      }
+    }
+    const pos = visible.findIndex((p) => p.i === selIdx);
+    const sel = selIdx >= 0 ? people[selIdx] : {};
+    const warmed = !!this.state.warmed[selIdx];
+    return {
+      count: 30 + visible.length * 4,
+      filters: labels.map((l) => {
+        const on = l === f;
+        return { label: l, pressed: on ? 'true' : 'false', bg: on ? '#FFC857' : 'transparent', fg: on ? '#1A1300' : '#C9CDE3', border: on ? '#FFC857' : '#323C6E',
+          pick: () => this.setState({ filter: l }) };
+      }),
+      stars, lines, showConst,
+      people: visible.map((p, k) => {
+        const on = p.i === selIdx;
+        return {
+          x: p.x + '%', y: p.y + '%',
+          size: Math.min(20, 8 + Math.round(p.waited / 4)) + 'px',
+          op: (0.55 + Math.min(p.waited, 50) / 110).toFixed(2),
+          delay: (k * 0.45).toFixed(2) + 's',
+          aria: p.name + ' in ' + p.city + ', ' + p.feeling + (p.mentor ? ', been there' : ''),
+          pressed: on ? 'true' : 'false',
+          ring: on ? 'rgba(255, 200, 87, 0.95)' : (p.mentor ? 'rgba(201, 205, 227, 0.6)' : 'transparent'),
+          ringStyle: on ? 'solid' : 'dashed',
+          pick: () => this.setState({ sel: p.i })
+        };
+      }),
+      hasSel: selIdx >= 0,
+      sel: { ...sel, star: sel.trusted ? '★' : '', mentor: !!sel.mentor },
+      warmed: warmed ? 'true' : 'false',
+      warmBg: warmed ? '#FFE9B8' : 'transparent',
+      warmLabel: warmed ? 'Warmth sent' : 'Send warmth',
+      warm: () => this.setState({ warmed: { ...this.state.warmed, [selIdx]: true } }),
+      next: () => {
+        if (!visible.length) return;
+        const n = visible[(pos + 1) % visible.length];
+        this.setState({ sel: n.i });
+      }
+    };
+  }
+}
+</script>
+
+
+</body></html>

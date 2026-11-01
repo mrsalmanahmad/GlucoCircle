@@ -1,0 +1,142 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Know the signs</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 1260px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F6FA; color: #0F1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 20px; padding: 56px 20px 24px">
+    <header style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Could it be diabetes?</h1>
+      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #4F5B6E">Tap any signs you or a loved one have noticed lately. This is not a diagnosis — only a blood test can tell.</p>
+    </header>
+
+    <div role="group" aria-label="Common signs" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden">
+      <sc-for list="{{signs}}" as="s" hint-placeholder-count="8">
+        <button type="button" sc-camel-on-click="{{s.toggle}}" aria-pressed="{{s.pressed}}" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 16px; border: 0; border-bottom: 1px solid #EEF1F6; background: {{s.bg}}; font: inherit; color: #0F1A2E; text-align: left; cursor: pointer">
+          <span aria-hidden="true" style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 7px; border: 2px solid {{s.ring}}; background: {{s.fill}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-sizing: border-box">
+            <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg>
+          </span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+            <span style="font-size: 15px; font-weight: 600">{{s.title}}</span>
+            <span style="font-size: 12px; color: #4F5B6E">{{s.note}}</span>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+
+    <section aria-live="polite" style="background: {{resBg}}; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 13px; font-weight: 700; color: {{resFg}}">{{resLabel}}</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #0F1A2E">{{resText}}</p>
+      <sc-if value="{{showFind}}" hint-placeholder-val="{{ true }}">
+        <button type="button" style="height: 48px; margin-top: 4px; border: 0; border-radius: 14px; background: #1E4FD8; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Find a test near me</button>
+      </sc-if>
+    </section>
+
+    <section aria-labelledby="num-h" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="num-h" style="margin: 0; font-size: 18px; font-weight: 700">Know your numbers</h2>
+      <div style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 20px; padding: 6px 16px">
+        <sc-raw-table style="width: 100%; border-collapse: collapse; font-size: 13px">
+          <sc-raw-thead>
+            <sc-raw-tr>
+              <sc-raw-th scope="col" style="text-align: left; padding: 10px 0; color: #4F5B6E; font-weight: 600">Test</sc-raw-th>
+              <sc-raw-th scope="col" style="text-align: left; padding: 10px 4px; color: #166534; font-weight: 700">Normal</sc-raw-th>
+              <sc-raw-th scope="col" style="text-align: left; padding: 10px 4px; color: #8A3D05; font-weight: 700">Pre</sc-raw-th>
+              <sc-raw-th scope="col" style="text-align: left; padding: 10px 4px; color: #B42318; font-weight: 700">Diabetes</sc-raw-th>
+            </sc-raw-tr>
+          </sc-raw-thead>
+          <sc-raw-tbody>
+            <sc-raw-tr style="border-top: 1px solid #EEF1F6">
+              <sc-raw-th scope="row" style="text-align: left; padding: 12px 0; font-weight: 600">Fasting<br><span style="font-weight: 400; color: #4F5B6E">mg/dL</span></sc-raw-th>
+              <sc-raw-td style="padding: 12px 4px">under 100</sc-raw-td>
+              <sc-raw-td style="padding: 12px 4px">100–125</sc-raw-td>
+              <sc-raw-td style="padding: 12px 4px">126+</sc-raw-td>
+            </sc-raw-tr>
+            <sc-raw-tr style="border-top: 1px solid #EEF1F6">
+              <sc-raw-th scope="row" style="text-align: left; padding: 12px 0; font-weight: 600">HbA1c<br><span style="font-weight: 400; color: #4F5B6E">3-month avg</span></sc-raw-th>
+              <sc-raw-td style="padding: 12px 4px">under 5.7%</sc-raw-td>
+              <sc-raw-td style="padding: 12px 4px">5.7–6.4%</sc-raw-td>
+              <sc-raw-td style="padding: 12px 4px">6.5%+</sc-raw-td>
+            </sc-raw-tr>
+          </sc-raw-tbody>
+        </sc-raw-table>
+      </div>
+    </section>
+
+    <section aria-labelledby="urgent-h" style="background: #FDECEC; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <h2 id="urgent-h" style="margin: 0; font-size: 16px; font-weight: 700; color: #8F1B12; display: flex; align-items: center; gap: 8px">
+        <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4"></path><path d="M12 17v.01"></path></svg>
+        Get help right away if you notice
+      </h2>
+      <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #3B0D09">Confusion or fainting, shaking and heavy sweating, very fast breathing, fruity-smelling breath, or vomiting with very high sugar.</p>
+      <button type="button" style="height: 48px; border: 0; border-radius: 14px; background: #B42318; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Call emergency [LOCAL NUMBER]</button>
+    </section>
+  </main>
+
+  <nav aria-label="Main" style="height: 80px; flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; background: #FFFFFF; border-top: 1px solid #E3E8F0; padding: 0 6px 10px">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="Community.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"></path><path d="M18 14.3c2 .8 3.5 2.8 3.5 5.7"></path></svg>Community</a>
+    <a href="Share.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>Share</a>
+    <a href="Signs.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #1E4FD8; font-size: 12px; font-weight: 700">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>Signs</a>
+    <a href="Healthy.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"></path><path d="M5 19l8-8"></path></svg>Healthy</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1260}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: { 0: true, 1: true } };
+  }
+  renderVals() {
+    const signs = [
+      { title: 'Very thirsty', note: 'Drinking much more than usual' },
+      { title: 'Urinating often', note: 'Especially waking up at night' },
+      { title: 'Tired all the time', note: 'Even after resting' },
+      { title: 'Losing weight without trying', note: 'Not from diet or exercise' },
+      { title: 'Always hungry', note: 'Hungry soon after eating' },
+      { title: 'Blurry vision', note: 'Comes and goes' },
+      { title: 'Cuts heal slowly', note: 'Or infections keep coming back' },
+      { title: 'Tingling hands or feet', note: 'Numbness or pins and needles' }
+    ];
+    const picked = this.state.picked;
+    const n = Object.keys(picked).filter((k) => picked[k]).length;
+    let resLabel, resText, resBg, resFg;
+    if (n === 0) {
+      resLabel = 'NO SIGNS SELECTED'; resBg = '#FFFFFF'; resFg = '#4F5B6E';
+      resText = 'No signs does not always mean no diabetes. If you are 35+ or it runs in your family, get tested anyway.';
+    } else if (n <= 2) {
+      resLabel = n + ' SIGN' + (n === 1 ? '' : 'S') + ' NOTICED'; resBg = '#FFF4E5'; resFg = '#8A3D05';
+      resText = 'Worth checking. Ask a doctor or lab for a fasting glucose or HbA1c test.';
+    } else {
+      resLabel = n + ' SIGNS NOTICED'; resBg = '#FDECEC'; resFg = '#8F1B12';
+      resText = 'Please see a doctor soon and ask for a blood sugar test. Catching it early makes a big difference.';
+    }
+    return {
+      signs: signs.map((s, i) => {
+        const on = !!picked[i];
+        return { ...s, pressed: on ? 'true' : 'false', bg: on ? '#F3F6FE' : '#FFFFFF', ring: on ? '#1E4FD8' : '#B8C2D3', fill: on ? '#1E4FD8' : '#FFFFFF',
+          toggle: () => this.setState({ picked: { ...this.state.picked, [i]: !this.state.picked[i] } }) };
+      }),
+      resLabel, resText, resBg, resFg,
+      showFind: n > 0
+    };
+  }
+}
+</script>
+
+
+</body></html>

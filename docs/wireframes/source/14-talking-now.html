@@ -1,0 +1,121 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Fireflies chat</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+@keyframes ffglow{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.3);opacity:1}}
+.ff{animation:ffglow 3.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.ff{animation:none}}
+input::placeholder{color:#8E97C4}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="padding: 50px 12px 12px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #1E2650">
+    <a href="Fireflies.dc.html" aria-label="Back to Fireflies" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <div aria-hidden="true" style="display: flex; align-items: center; gap: 4px">
+      <span class="ff" style="width: 10px; height: 10px; border-radius: 5px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.55)"></span>
+      <span style="width: 18px; height: 1px; background: #FFC857; opacity: 0.6"></span>
+      <span class="ff" style="width: 10px; height: 10px; border-radius: 5px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.55); animation-delay: 1.4s"></span>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 1px; margin-left: 8px">
+      <h1 style="margin: 0; font-size: 16px; font-weight: 800">You &amp; Maria</h1>
+      <span style="font-size: 12px; color: #A9B0CF"><span style="color: #FFD98A">★ Trusted · Been there</span> · 11:12 PM in Lisbon</span>
+    </div>
+    <a href="Report.dc.html" aria-label="Report or block" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #C9CDE3">
+      <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"></path><path d="M5 4h11l-2 4 2 4H5"></path></svg>
+    </a>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 16px">
+    <div style="align-self: center; display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #151C3B; font-size: 12px; font-weight: 600; color: #C9CDE3">
+      <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 3px; background: #FFC857"></span>
+      Glow ends in 24 min · messages fade after 24 h
+    </div>
+
+    <div style="background: #151C3B; border: 1px solid #262F57; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-size: 12px; font-weight: 700; color: #FFC857">YOU BOTH GLOWED FOR</span>
+      <span style="font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.4">“After a low” — lying awake after a scary night.</span>
+    </div>
+
+    <div aria-live="polite" style="display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+        <div style="max-width: 78%; align-self: {{m.side}}; padding: 10px 14px; border-radius: {{m.radius}}; background: {{m.bg}}; color: {{m.fg}}; font-size: 15px; line-height: 1.45">{{m.text}}</div>
+      </sc-for>
+    </div>
+
+    <div style="flex: 1"></div>
+    <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #A9B0CF; text-align: center">Share feelings, not medical advice. If your sugar is very low or high, follow your plan or <a href="Signs.dc.html">get help now</a>.</p>
+  </main>
+
+  <div style="padding: 0 16px 10px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+    <a href="Breathe.dc.html" style="height: 44px; border-radius: 14px; background: #151C3B; border: 1px solid #323C6E; color: #F3F1EA; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700; text-decoration: none">
+      <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFC857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3.5"></circle></svg>Breathe together</a>
+    <a href="ChatEnd.dc.html" style="height: 44px; border-radius: 14px; background: #151C3B; border: 1px solid #323C6E; color: #F3F1EA; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700; text-decoration: none">
+      <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#C9CDE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>I need to go</a>
+  </div>
+  <div style="padding: 0 16px 10px; display: flex; gap: 8px; flex-wrap: wrap">
+    <sc-for list="{{quick}}" as="q" hint-placeholder-count="3">
+      <button type="button" sc-camel-on-click="{{q.send}}" style="height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid #323C6E; background: transparent; color: #E4E6F2; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{q.label}}</button>
+    </sc-for>
+  </div>
+
+  <form sc-camel-on-submit="{{submit}}" style="padding: 8px 12px 30px; display: flex; align-items: center; gap: 8px; border-top: 1px solid #1E2650">
+    <button type="button" aria-label="Record a voice note" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 22px; border: 1px solid #323C6E; background: transparent; color: #C9CDE3; cursor: pointer; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg>
+    </button>
+    <label for="msg" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Message</label>
+    <input id="msg" type="text" value="{{draft}}" sc-camel-on-change="{{onDraft}}" placeholder="Write something kind…" style="flex: 1; min-width: 0; height: 44px; border-radius: 22px; border: 1px solid #323C6E; background: #151C3B; color: #F3F1EA; padding: 0 16px; font: inherit; font-size: 15px">
+    <button type="submit" aria-label="Send" style="width: 44px; height: 44px; flex-shrink: 0; border: 0; border-radius: 22px; background: #FFC857; color: #1A1300; cursor: pointer; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+    </button>
+  </form>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      draft: '',
+      msgs: [
+        { me: false, text: 'Hi. Thanks for the glow. I thought I was the only one up.' },
+        { me: true, text: 'Same here. Had a low around 3 and now my heart won’t slow down.' },
+        { me: false, text: 'That racing feeling is the worst. I usually make tea and watch something silly until it passes.' },
+        { me: true, text: 'Tea is a good idea. It helps just knowing someone gets it.' }
+      ]
+    };
+  }
+  add(text) {
+    const t = (text || '').trim();
+    if (!t) return;
+    this.setState({ draft: '', msgs: this.state.msgs.concat([{ me: true, text: t }]) });
+  }
+  renderVals() {
+    return {
+      msgs: this.state.msgs.slice(-5).map((m) => ({
+        text: m.text,
+        side: m.me ? 'flex-end' : 'flex-start',
+        radius: m.me ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+        bg: m.me ? '#FFC857' : '#1C2449',
+        fg: m.me ? '#1A1300' : '#F3F1EA'
+      })),
+      quick: ['You’re not alone', 'What helps you?', 'Same here'].map((l) => ({ label: l, send: () => this.add(l) })),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      submit: (e) => { e.preventDefault(); this.add(this.state.draft); }
+    };
+  }
+}
+</script>
+
+
+</body></html>

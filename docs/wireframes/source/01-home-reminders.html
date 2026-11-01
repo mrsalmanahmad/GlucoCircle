@@ -1,0 +1,121 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Home</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 960px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4F6FA; color: #0F1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 20px; padding: 56px 20px 20px">
+    <header style="display: flex; justify-content: space-between; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <p style="margin: 0; font-size: 14px; color: #4F5B6E">Good morning</p>
+        <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Ayesha</h1>
+      </div>
+      <button type="button" aria-label="Notifications" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #0F1A2E; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>
+      </button>
+    </header>
+
+    <section aria-label="Latest glucose reading" style="background: {{accent}}; color: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <p style="margin: 0; font-size: 14px; font-weight: 600; opacity: 0.92">Last reading · Fasting</p>
+        <span style="font-size: 12px; font-weight: 700; background: #FFFFFF; color: #166534; padding: 4px 10px; border-radius: 999px">In your target</span>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">108</span>
+        <span style="font-size: 16px; font-weight: 600">mg/dL</span>
+      </div>
+      <p style="margin: 0; font-size: 13px; opacity: 0.92">Today, 7:45 AM · Target 80–130 (set with your doctor)</p>
+      <a href="Log.dc.html" style="height: 48px; border-radius: 14px; background: #FFFFFF; color: #1E4FD8; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; text-decoration: none">+ Log a reading · See trends</a>
+    </section>
+
+    <section aria-labelledby="rem-h" style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 id="rem-h" style="margin: 0; font-size: 18px; font-weight: 700">Today's reminders</h2>
+        <a href="#" style="font-size: 14px; font-weight: 600; text-decoration: none">Edit</a>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; border: 1px solid #E3E8F0; display: flex; flex-direction: column">
+        <sc-for list="{{reminders}}" as="r" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #EEF1F6">
+            <button type="button" sc-camel-on-click="{{r.toggle}}" aria-pressed="{{r.done}}" aria-label="Mark done: {{r.title}}" style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 14px; border: 2px solid {{r.ring}}; background: {{r.fill}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0">
+              <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+            </button>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 15px; font-weight: 600; text-decoration: {{r.strike}}; color: {{r.color}}">{{r.title}}</span>
+              <span style="font-size: 12px; color: #4F5B6E">{{r.note}}</span>
+            </div>
+            <span style="font-size: 13px; font-weight: 600; color: #4F5B6E">{{r.time}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Awareness tip" style="background: #FFF4E5; border-radius: 20px; padding: 16px; display: flex; gap: 12px; align-items: flex-start">
+      <div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; background: #FFFFFF; color: #A44A06; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.5v.01"></path></svg>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <p style="margin: 0; font-size: 14px; line-height: 1.45; color: #4A2A06">Type 2 diabetes can go unnoticed for years. A simple blood test is the only way to know for sure.</p>
+        <a href="Signs.dc.html" style="font-size: 14px; font-weight: 700; color: #8A3D05; text-decoration: none">Check the signs →</a>
+      </div>
+    </section>
+  </main>
+
+  <nav aria-label="Main" style="height: 80px; flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; background: #FFFFFF; border-top: 1px solid #E3E8F0; padding: 0 6px 10px">
+    <a href="Main.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #1E4FD8; font-size: 12px; font-weight: 700">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="Community.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"></path><path d="M18 14.3c2 .8 3.5 2.8 3.5 5.7"></path></svg>Community</a>
+    <a href="Share.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>Share</a>
+    <a href="Signs.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>Signs</a>
+    <a href="Healthy.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"></path><path d="M5 19l8-8"></path></svg>Healthy</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1E4FD8&quot;,&quot;options&quot;:[&quot;#1E4FD8&quot;,&quot;#0F766E&quot;,&quot;#6D28D9&quot;]},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:960}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { done: { 0: true } };
+  }
+  renderVals() {
+    const items = [
+      { title: 'Check fasting glucose', note: 'Before breakfast', time: '8:00 AM' },
+      { title: 'Morning medicine', note: 'As prescribed by your doctor', time: '9:00 AM' },
+      { title: 'Check after lunch', note: '2 hours after eating', time: '3:30 PM' },
+      { title: '20-minute walk', note: 'Helps lower after-meal sugar', time: '6:00 PM' },
+      { title: 'Daily foot check', note: 'Look for cuts, blisters, redness', time: '10:00 PM' }
+    ];
+    const done = this.state.done;
+    return {
+      accent: this.props.accent ?? '#1E4FD8',
+      reminders: items.map((r, i) => {
+        const d = !!done[i];
+        return {
+          ...r,
+          done: d ? 'true' : 'false',
+          ring: d ? '#16A34A' : '#B8C2D3',
+          fill: d ? '#16A34A' : '#FFFFFF',
+          strike: d ? 'line-through' : 'none',
+          color: d ? '#4F5B6E' : '#0F1A2E',
+          toggle: () => this.setState({ done: { ...this.state.done, [i]: !this.state.done[i] } })
+        };
+      })
+    };
+  }
+}
+</script>
+
+
+</body></html>

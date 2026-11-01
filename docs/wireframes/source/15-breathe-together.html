@@ -1,0 +1,81 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Breathe together</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+@keyframes ffbreathe{0%,100%{transform:scale(.62)}50%{transform:scale(1)}}
+@keyframes fforbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ffb{animation:ffbreathe 8s ease-in-out infinite}
+.ffo{animation:fforbit 16s linear infinite}
+@media (prefers-reduced-motion:reduce){.ffb,.ffo{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 52px 20px 32px; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="align-self: stretch; display: flex; align-items: center; justify-content: space-between">
+    <a href="FireflyChat.dc.html" aria-label="Back to chat" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-size: 13px; font-weight: 600; color: #A9B0CF">With Maria · in sync</span>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 6px; text-align: center">
+    <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 600">Breathe together</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #C9CDE3">Maria sees the same circle, at the same time.</p>
+  </div>
+
+  <div style="position: relative; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; margin-top: 20px">
+    <div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 150px; border: 1px dashed #323C6E"></div>
+    <div class="ffb" aria-hidden="true" style="position: absolute; width: 260px; height: 260px; border-radius: 130px; background: #1A2350; border: 2px solid rgba(255, 200, 87, 0.55); box-shadow: 0 0 60px 10px rgba(255, 200, 87, 0.12)"></div>
+    <div class="ffo" aria-hidden="true" style="position: absolute; inset: 0">
+      <span style="position: absolute; left: 144px; top: -6px; width: 12px; height: 12px; border-radius: 6px; background: #FFFFFF; box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.45)"></span>
+      <span style="position: absolute; left: 144px; bottom: -6px; width: 12px; height: 12px; border-radius: 6px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.6)"></span>
+    </div>
+    <div aria-live="polite" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px">
+      <span style="font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 500">{{phase}}</span>
+      <span style="font-size: 13px; color: #C9CDE3">{{sub}}</span>
+    </div>
+  </div>
+
+  <p style="margin: 0; font-size: 13px; color: #A9B0CF; display: flex; gap: 16px">
+    <span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #FFFFFF"></span>You</span>
+    <span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #FFC857"></span>Maria</span>
+  </p>
+
+  <div style="flex: 1"></div>
+  <p style="margin: 0; font-size: 15px; font-weight: 600; color: #FFD98A">{{rounds}} of 6 breaths together</p>
+  <a href="FireflyChat.dc.html" style="align-self: stretch; height: 54px; border-radius: 27px; border: 1px solid #323C6E; color: #F3F1EA; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; text-decoration: none">I feel calmer · back to chat</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tick: 0 };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState({ tick: this.state.tick + 1 }), 4000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+  renderVals() {
+    const t = this.state.tick;
+    const inhale = t % 2 === 0;
+    return {
+      phase: inhale ? 'Breathe in' : 'Breathe out',
+      sub: inhale ? 'slowly, for 4' : 'let it go, for 4',
+      rounds: Math.min(6, Math.floor(t / 2) + 1)
+    };
+  }
+}
+</script>
+
+
+</body></html>

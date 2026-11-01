@@ -1,0 +1,103 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Soft goodbye</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+textarea::placeholder{color:#8E97C4}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; padding: 56px 20px 30px; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+    <div aria-hidden="true" style="display: flex; align-items: center; gap: 6px">
+      <span style="width: 12px; height: 12px; border-radius: 6px; background: #FFFFFF; box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.4)"></span>
+      <span style="width: 40px; height: 1px; background: rgba(255, 200, 87, 0.5)"></span>
+      <span style="width: 12px; height: 12px; border-radius: 6px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.6)"></span>
+    </div>
+    <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 28px; font-weight: 600; line-height: 1.2">Thank you for glowing together</h1>
+    <p style="margin: 0; font-size: 14px; color: #C9CDE3">Maria was told you had to go. No awkward goodbyes.</p>
+  </div>
+
+  <section aria-labelledby="now-h" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="now-h" style="margin: 0; font-size: 15px; font-weight: 700">How do you feel now? <span style="font-weight: 500; color: #A9B0CF">· private</span></h2>
+    <div role="group" aria-labelledby="now-h" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{feels}}" as="f" hint-placeholder-count="4">
+        <button type="button" sc-camel-on-click="{{f.pick}}" aria-pressed="{{f.pressed}}" style="height: 44px; border-radius: 14px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{f.label}}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 10px">
+    <label for="lantern" style="font-size: 15px; font-weight: 700">Leave Maria a lantern</label>
+    <p style="margin: -4px 0 0; font-size: 13px; color: #A9B0CF">She'll find it when she wakes up.</p>
+    <textarea id="lantern" rows="3" maxlength="120" sc-camel-on-change="{{onLantern}}" placeholder="Something kind for her morning…" style="box-sizing: border-box; width: 100%; resize: none; border: 1px solid #5A4A20; border-radius: 16px; padding: 14px; background: #151C3B; color: #F3F1EA; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.45">{{lantern}}</textarea>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{ideas}}" as="i" hint-placeholder-count="3">
+        <button type="button" sc-camel-on-click="{{i.use}}" style="min-height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid #323C6E; background: transparent; color: #E4E6F2; font: inherit; font-size: 13px; cursor: pointer">{{i.label}}</button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background: #151C3B; border: 1px solid #262F57; border-radius: 18px; display: flex; flex-direction: column">
+    <button type="button" role="switch" sc-camel-on-click="{{toggleAgain}}" aria-checked="{{againChecked}}" style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; border: 0; border-bottom: 1px solid #262F57; background: transparent; color: #F3F1EA; font: inherit; text-align: left; cursor: pointer">
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 14px; font-weight: 700">Glow with Maria again</span>
+        <span style="font-size: 12px; color: #A9B0CF">If she says yes too, you become firefly friends</span>
+      </span>
+      <span aria-hidden="true" style="width: 44px; height: 26px; flex-shrink: 0; border-radius: 13px; background: {{againTrack}}; display: flex; align-items: center; justify-content: {{againSide}}; padding: 3px; box-sizing: border-box">
+        <span style="width: 20px; height: 20px; border-radius: 10px; background: {{againKnob}}"></span>
+      </span>
+    </button>
+    <div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px">
+      <span id="kind-l" style="flex: 1; font-size: 14px; font-weight: 700">Was Maria kind and safe?</span>
+      <div role="group" aria-labelledby="kind-l" style="display: flex; gap: 8px">
+        <button type="button" sc-camel-on-click="{{kindYes}}" aria-pressed="{{kindYesP}}" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid {{kyB}}; background: {{kyBg}}; color: {{kyFg}}; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">Yes</button>
+        <a href="Report.dc.html" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #323C6E; color: #E4E6F2; display: flex; align-items: center; font-size: 13px; font-weight: 700; text-decoration: none">Report</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="flex: 1"></div>
+  <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #A9B0CF; text-align: center">This chat fades in 24 hours. Your feeling is saved to your private night journal.</p>
+  <a href="Morning.dc.html" style="height: 56px; border-radius: 28px; background: #FFC857; color: #1A1300; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; text-decoration: none">{{doneLabel}}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { feel: 'Calmer', lantern: '', again: true, kind: true };
+  }
+  renderVals() {
+    const again = this.state.again;
+    const ky = this.state.kind;
+    return {
+      feels: ['Calmer', 'Same', 'Sleepy', 'Still low'].map((l) => {
+        const on = this.state.feel === l;
+        return { label: l, pressed: on ? 'true' : 'false', bg: on ? '#FFC857' : '#151C3B', fg: on ? '#1A1300' : '#E4E6F2', border: on ? '#FFC857' : '#323C6E',
+          pick: () => this.setState({ feel: l }) };
+      }),
+      lantern: this.state.lantern,
+      onLantern: (e) => this.setState({ lantern: e.target.value }),
+      ideas: ['Hope your morning reading is kind to you', 'You were brave tonight', 'Thank you for staying up with me'].map((l) => ({
+        label: l, use: () => this.setState({ lantern: l })
+      })),
+      againChecked: again ? 'true' : 'false',
+      againTrack: again ? '#FFC857' : '#323C6E', againKnob: again ? '#1A1300' : '#A9B0CF', againSide: again ? 'flex-end' : 'flex-start',
+      toggleAgain: () => this.setState({ again: !this.state.again }),
+      kindYesP: ky ? 'true' : 'false', kyB: ky ? '#FFC857' : '#323C6E', kyBg: ky ? '#FFC857' : 'transparent', kyFg: ky ? '#1A1300' : '#E4E6F2',
+      kindYes: () => this.setState({ kind: !this.state.kind }),
+      doneLabel: this.state.lantern.trim() ? 'Leave lantern & rest' : 'Done · rest well'
+    };
+  }
+}
+</script>
+
+
+</body></html>

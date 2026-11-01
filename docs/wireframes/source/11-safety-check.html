@@ -1,0 +1,100 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Safety check</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#FFC857}a:hover{color:#FFD98A}
+input::placeholder{color:#8E97C4}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; padding: 52px 20px 28px; background: #0B1026; color: #F3F1EA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Glow.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #F3F1EA">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </a>
+    <span style="font-size: 13px; font-weight: 600; color: #A9B0CF">Takes 20 seconds</span>
+  </header>
+
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.15">First, let's make sure you're safe</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #C9CDE3">You picked "After a low". Your body comes before the chat.</p>
+  </div>
+
+  <section aria-labelledby="q1" style="display: flex; flex-direction: column; gap: 10px">
+    <h2 id="q1" style="margin: 0; font-size: 15px; font-weight: 700">Have you treated the low?</h2>
+    <div role="group" aria-labelledby="q1" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <button type="button" sc-camel-on-click="{{yes}}" aria-pressed="{{yesP}}" style="height: 52px; border-radius: 16px; border: 1px solid {{yesB}}; background: {{yesBg}}; color: {{yesFg}}; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Yes, I have</button>
+      <button type="button" sc-camel-on-click="{{no}}" aria-pressed="{{noP}}" style="height: 52px; border-radius: 16px; border: 1px solid {{noB}}; background: {{noBg}}; color: {{noFg}}; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Not yet</button>
+    </div>
+  </section>
+
+  <sc-if value="{{showSteps}}" hint-placeholder-val="{{ false }}">
+    <section aria-label="Treat a low" style="background: #FDECEC; color: #3B0D09; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 800; color: #8F1B12">Treat it now — the 15-15 rule</h2>
+      <ol style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.45">
+        <li>Take 15 g of fast sugar: 3–4 glucose tablets, ½ glass of juice, or 1 tablespoon of sugar in water.</li>
+        <li>Wait 15 minutes, then check again.</li>
+        <li>Still under 70? Repeat. Then eat a small snack.</li>
+      </ol>
+      <button type="button" style="height: 48px; border: 0; border-radius: 14px; background: #B42318; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer">Wake my emergency contact</button>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{showQ2}}" hint-placeholder-val="{{ true }}">
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <label for="now" style="font-size: 15px; font-weight: 700">What's your sugar now? (mg/dL)</label>
+      <input id="now" type="number" inputmode="numeric" placeholder="e.g. 96" value="{{reading}}" sc-camel-on-change="{{onReading}}" style="height: 60px; border: 1px solid #323C6E; border-radius: 16px; padding: 0 16px; background: #151C3B; color: #F3F1EA; font: inherit; font-size: 26px; font-weight: 800">
+      <p aria-live="polite" style="margin: 0; font-size: 14px; line-height: 1.5; color: {{msgColor}}">{{msg}}</p>
+    </section>
+  </sc-if>
+
+  <div style="flex: 1"></div>
+  <sc-if value="{{canGo}}" hint-placeholder-val="{{ true }}">
+    <a href="Fireflies.dc.html" style="height: 56px; border-radius: 28px; background: #FFC857; color: #1A1300; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; text-decoration: none">Start glowing</a>
+  </sc-if>
+  <sc-if value="{{cantGo}}" hint-placeholder-val="{{ false }}">
+    <p style="margin: 0; height: 56px; border-radius: 28px; border: 1px dashed #323C6E; color: #A9B0CF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">Your glow will be ready once you're above 70</p>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { treated: 'yes', reading: '96' };
+  }
+  renderVals() {
+    const t = this.state.treated;
+    const v = parseInt(this.state.reading, 10);
+    const has = !isNaN(v);
+    const low = has && v < 70;
+    let msg = 'Enter your latest reading.', msgColor = '#A9B0CF';
+    if (has && low) { msg = 'Still low. Please treat it again and recheck in 15 minutes.'; msgColor = '#FFB4A8'; }
+    else if (has) { msg = 'Good, you’re back in a safe range. Glad you’re okay.'; msgColor = '#9BE2B0'; }
+    const sel = (on) => ({ B: on ? '#FFC857' : '#323C6E', Bg: on ? '#FFC857' : '#151C3B', Fg: on ? '#1A1300' : '#E4E6F2' });
+    const y = sel(t === 'yes'), n = sel(t === 'no');
+    const go = t === 'yes' && has && !low;
+    return {
+      yesP: t === 'yes' ? 'true' : 'false', yesB: y.B, yesBg: y.Bg, yesFg: y.Fg,
+      noP: t === 'no' ? 'true' : 'false', noB: n.B, noBg: n.Bg, noFg: n.Fg,
+      yes: () => this.setState({ treated: 'yes' }),
+      no: () => this.setState({ treated: 'no' }),
+      showSteps: t === 'no' || low,
+      showQ2: t === 'yes',
+      reading: this.state.reading,
+      onReading: (e) => this.setState({ reading: e.target.value }),
+      msg, msgColor,
+      canGo: go, cantGo: !go
+    };
+  }
+}
+</script>
+
+
+</body></html>

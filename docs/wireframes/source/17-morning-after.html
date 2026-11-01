@@ -1,0 +1,121 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – The morning after</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 1060px; box-sizing: border-box; display: flex; flex-direction: column; background: #FBF6EC; color: #1B1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 56px 20px 20px">
+    <header style="display: flex; flex-direction: column; gap: 2px">
+      <p style="margin: 0; font-size: 14px; color: #5E5A4E">7:40 AM · you made it through the night</p>
+      <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 600">Good morning, Ayesha</h1>
+    </header>
+
+    <section aria-label="A lantern from Maria" style="background: #0B1026; color: #F3F1EA; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span aria-hidden="true" style="width: 28px; height: 36px; border-radius: 10px 10px 12px 12px; border: 1.5px solid #FFC857; display: flex; align-items: center; justify-content: center">
+          <span style="width: 9px; height: 12px; border-radius: 5px; background: #FFC857; box-shadow: 0 0 10px 4px rgba(255, 200, 87, 0.55)"></span>
+        </span>
+        <span style="font-size: 13px; font-weight: 700; color: #FFD98A">Maria left you a lantern</span>
+      </div>
+      <p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.45">“Hope your morning reading is kind to you. Thank you for staying up with me.”</p>
+      <button type="button" sc-camel-on-click="{{thank}}" aria-pressed="{{thanked}}" style="align-self: flex-start; height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid #FFC857; background: {{thankBg}}; color: {{thankFg}}; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer">{{thankLabel}}</button>
+    </section>
+
+    <section aria-labelledby="ma-h" style="background: #FFFFFF; border: 1px solid #ECE3D1; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <h2 id="ma-h" style="margin: 0; font-size: 16px; font-weight: 700">After last night's low, how's your fasting sugar?</h2>
+      <div style="display: flex; gap: 8px">
+        <label for="fasting" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Fasting reading in mg/dL</label>
+        <input id="fasting" type="number" inputmode="numeric" placeholder="mg/dL" style="flex: 1; min-width: 0; height: 52px; border: 1px solid #D9CFBC; border-radius: 14px; padding: 0 14px; font: inherit; font-size: 20px; font-weight: 800; color: #1B1A2E; background: #FFFDF8">
+        <a href="Log.dc.html" style="height: 52px; padding: 0 18px; border-radius: 14px; background: #1E4FD8; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 700; text-decoration: none">Save to log</a>
+      </div>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5E5A4E">A morning high after a night low can be your body's rebound. Worth mentioning to your doctor.</p>
+    </section>
+
+    <section aria-labelledby="nj-h" style="background: #FFFFFF; border: 1px solid #ECE3D1; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 id="nj-h" style="margin: 0; font-size: 16px; font-weight: 700">Your night journal</h2>
+        <span style="font-size: 12px; color: #5E5A4E">Last 4 weeks · private</span>
+      </div>
+      <div role="img" aria-label="{{gridLabel}}" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{dayNames}}" as="d" hint-placeholder-count="7"><span style="font-size: 11px; font-weight: 600; color: #5E5A4E; text-align: center">{{d}}</span></sc-for>
+        <sc-for list="{{grid}}" as="c" hint-placeholder-count="28">
+          <span style="height: 26px; border-radius: 8px; background: {{c.bg}}; border: 1px solid {{c.border}}; display: flex; align-items: center; justify-content: center">
+            <span style="width: 7px; height: 7px; border-radius: 4px; background: {{c.dot}}"></span>
+          </span>
+        </sc-for>
+      </div>
+      <p style="margin: 0; font-size: 12px; color: #5E5A4E; display: flex; gap: 14px">
+        <span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 4px; background: #0B1026"></span>Glowed at night</span>
+        <span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #E0553B"></span>Night low</span>
+      </p>
+      <p style="margin: 0; padding: 10px 12px; border-radius: 12px; background: #FFF1D6; font-size: 14px; line-height: 1.45; color: #4A3200">Most of your night lows were on <b>Thursdays</b>, after your evening walk. Maybe a small snack before bed on those days? Ask your doctor.</p>
+    </section>
+
+    <section aria-labelledby="ff-h" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="ff-h" style="margin: 0; font-size: 16px; font-weight: 700">Firefly friends</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div style="background: #FFFFFF; border: 1px solid #ECE3D1; border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px">
+          <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 5px; background: #C9C2B3"></span>
+          <span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700">Maria</span><span style="font-size: 12px; color: #5E5A4E">Asleep · Lisbon</span></span>
+        </div>
+        <a href="Fireflies.dc.html" style="background: #0B1026; border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3F1EA">
+          <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 5px; background: #FFC857; box-shadow: 0 0 8px 3px rgba(255, 200, 87, 0.6)"></span>
+          <span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 700">Rahim</span><span style="font-size: 12px; color: #C9CDE3">Glowing now · Dhaka</span></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <nav aria-label="Main" style="height: 80px; flex-shrink: 0; display: flex; justify-content: space-around; align-items: center; background: #FFFFFF; border-top: 1px solid #ECE3D1; padding: 0 6px 10px">
+    <a href="Main.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #1E4FD8; font-size: 12px; font-weight: 700">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>Home</a>
+    <a href="Community.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"></path><path d="M18 14.3c2 .8 3.5 2.8 3.5 5.7"></path></svg>Community</a>
+    <a href="Share.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>Share</a>
+    <a href="Signs.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>Signs</a>
+    <a href="Healthy.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 64px; min-height: 52px; text-decoration: none; color: #5B6576; font-size: 12px; font-weight: 600">
+      <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"></path><path d="M5 19l8-8"></path></svg>Healthy</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:1060}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { thanked: false };
+  }
+  renderVals() {
+    const glowed = [3, 9, 10, 17, 21, 24, 27];
+    const lows = [3, 10, 17, 24, 27];
+    const grid = [];
+    for (let i = 0; i < 28; i++) {
+      const g = glowed.indexOf(i) >= 0, l = lows.indexOf(i) >= 0;
+      grid.push({ bg: g ? '#0B1026' : '#F4EEE2', border: g ? '#0B1026' : '#ECE3D1', dot: l ? '#E0553B' : 'transparent' });
+    }
+    const t = this.state.thanked;
+    return {
+      dayNames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      grid,
+      gridLabel: 'Glowed on 7 nights in the last 4 weeks; 5 nights had lows, 4 of them on Thursdays',
+      thanked: t ? 'true' : 'false',
+      thankBg: t ? '#FFC857' : 'transparent', thankFg: t ? '#1A1300' : '#FFD98A',
+      thankLabel: t ? 'Warmth sent back' : 'Send warmth back',
+      thank: () => this.setState({ thanked: true })
+    };
+  }
+}
+</script>
+
+
+</body></html>

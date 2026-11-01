@@ -1,0 +1,99 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Share your experience</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; color: #0F1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 52px 12px 12px; border-bottom: 1px solid #EEF1F6">
+    <a href="Community.dc.html" style="min-height: 44px; padding: 0 8px; display: flex; align-items: center; font-size: 15px; font-weight: 600; color: #34405A; text-decoration: none">Cancel</a>
+    <h1 style="margin: 0; font-size: 17px; font-weight: 700">Share your experience</h1>
+    <a href="Community.dc.html" style="min-height: 40px; padding: 0 16px; border-radius: 20px; background: #1E4FD8; color: #FFFFFF; display: flex; align-items: center; font-size: 15px; font-weight: 700; text-decoration: none">Post</a>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 24px; padding: 20px">
+    <section aria-labelledby="mood-h" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="mood-h" style="margin: 0; font-size: 16px; font-weight: 700">How are you feeling today?</h2>
+      <div role="group" aria-labelledby="mood-h" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{moods}}" as="m" hint-placeholder-count="4">
+          <button type="button" sc-camel-on-click="{{m.pick}}" aria-pressed="{{m.pressed}}" style="min-height: 76px; border-radius: 16px; border: 2px solid {{m.border}}; background: {{m.bg}}; color: #0F1A2E; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 8px 4px">
+            <span aria-hidden="true" style="width: 26px; height: 26px; border-radius: 13px; background: {{m.dot}}"></span>
+            {{m.label}}
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 8px">
+      <label for="story" style="font-size: 16px; font-weight: 700">What would you like to share?</label>
+      <textarea id="story" rows="6" placeholder="How you feel, what helped, a question for others…" style="box-sizing: border-box; width: 100%; min-height: 160px; resize: none; border: 1px solid #CBD3E1; border-radius: 16px; padding: 14px; font: inherit; font-size: 15px; line-height: 1.5; color: #0F1A2E; background: #F9FAFC"></textarea>
+    </section>
+
+    <section aria-labelledby="topic-h" style="display: flex; flex-direction: column; gap: 10px">
+      <h2 id="topic-h" style="margin: 0; font-size: 16px; font-weight: 700">Topic</h2>
+      <div role="group" aria-labelledby="topic-h" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{topics}}" as="t" hint-placeholder-count="6">
+          <button type="button" sc-camel-on-click="{{t.pick}}" aria-pressed="{{t.pressed}}" style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">{{t.label}}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <button type="button" sc-camel-on-click="{{toggleAnon}}" role="switch" aria-checked="{{anonChecked}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; border: 1px solid #E3E8F0; background: #F9FAFC; font: inherit; color: #0F1A2E; text-align: left; cursor: pointer">
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 15px; font-weight: 700">Post anonymously</span>
+        <span style="font-size: 13px; color: #4F5B6E">Your name and photo stay hidden</span>
+      </span>
+      <span aria-hidden="true" style="width: 48px; height: 28px; border-radius: 14px; background: {{trackBg}}; display: flex; align-items: center; justify-content: {{knobSide}}; padding: 3px; box-sizing: border-box">
+        <span style="width: 22px; height: 22px; border-radius: 11px; background: #FFFFFF"></span>
+      </span>
+    </button>
+
+    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4F5B6E">Be kind. Share what worked for you, but please don't give medicine or dose advice — every body is different. Always check with your doctor.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mood: 'Okay', topic: 'Type 2', anon: false };
+  }
+  renderVals() {
+    const moods = [
+      { label: 'Good', dot: '#22C55E' },
+      { label: 'Okay', dot: '#3B82F6' },
+      { label: 'Low', dot: '#F59E0B' },
+      { label: 'Struggling', dot: '#8B5CF6' }
+    ];
+    const topics = ['Newly diagnosed', 'Type 1', 'Type 2', 'Gestational', 'Food', 'Caregivers', 'Exercise'];
+    const anon = this.state.anon;
+    return {
+      moods: moods.map((m) => {
+        const on = this.state.mood === m.label;
+        return { ...m, pressed: on ? 'true' : 'false', border: on ? '#1E4FD8' : '#E3E8F0', bg: on ? '#E8EEFD' : '#FFFFFF',
+          pick: () => this.setState({ mood: m.label }) };
+      }),
+      topics: topics.map((l) => {
+        const on = this.state.topic === l;
+        return { label: l, pressed: on ? 'true' : 'false', bg: on ? '#0F1A2E' : '#FFFFFF', fg: on ? '#FFFFFF' : '#34405A', border: on ? '#0F1A2E' : '#CBD3E1',
+          pick: () => this.setState({ topic: l }) };
+      }),
+      anonChecked: anon ? 'true' : 'false',
+      trackBg: anon ? '#1E4FD8' : '#B8C2D3',
+      knobSide: anon ? 'flex-end' : 'flex-start',
+      toggleAnon: () => this.setState({ anon: !this.state.anon })
+    };
+  }
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,81 @@
+<!-- Reference only: extracted from ../GlucoCircle-wireframes.html with font data removed. Not runnable. Use it to read exact sizes, colours, copy and state logic. -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>GlucoCircle – Welcome</title>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#1E4FD8}a:hover{color:#163BA6}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; padding: 60px 20px 32px; background: #FFFFFF; color: #0F1A2E; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <div aria-hidden="true" style="width: 36px; height: 36px; border-radius: 18px; border: 6px solid #1E4FD8; box-sizing: border-box"></div>
+      <span style="font-size: 18px; font-weight: 800; letter-spacing: -0.01em">GlucoCircle</span>
+    </div>
+    <span style="font-size: 13px; font-weight: 600; color: #4F5B6E">Step 1 of 3</span>
+  </div>
+  <div role="progressbar" aria-label="Setup progress" aria-valuenow="1" aria-valuemin="0" aria-valuemax="3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+    <div style="height: 6px; border-radius: 3px; background: #1E4FD8"></div>
+    <div style="height: 6px; border-radius: 3px; background: #E3E8F0"></div>
+    <div style="height: 6px; border-radius: 3px; background: #E3E8F0"></div>
+  </div>
+
+  <header style="display: flex; flex-direction: column; gap: 8px">
+    <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2">What brings you to GlucoCircle?</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #4F5B6E">We'll set up your reminders, community and tips around you. Pick all that fit.</p>
+  </header>
+
+  <div role="group" aria-label="Your situation" style="display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{options}}" as="o" hint-placeholder-count="6">
+      <button type="button" sc-camel-on-click="{{o.toggle}}" aria-pressed="{{o.pressed}}" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 14px; border-radius: 16px; border: 2px solid {{o.border}}; background: {{o.bg}}; font: inherit; color: #0F1A2E; text-align: left; cursor: pointer">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+          <span style="font-size: 15px; font-weight: 700">{{o.title}}</span>
+          <span style="font-size: 12px; color: #4F5B6E">{{o.note}}</span>
+        </span>
+        <span aria-hidden="true" style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 12px; border: 2px solid {{o.ring}}; background: {{o.fill}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-sizing: border-box">
+          <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="flex: 1"></div>
+  <a href="Main.dc.html" style="height: 54px; border-radius: 16px; background: #1E4FD8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; text-decoration: none">Continue</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: { 1: true } };
+  }
+  renderVals() {
+    const opts = [
+      { title: 'I have type 1 diabetes', note: 'Insulin, readings, daily life' },
+      { title: 'I have type 2 diabetes', note: 'Food, activity, medicine reminders' },
+      { title: 'I have prediabetes', note: 'Steps to turn it around' },
+      { title: 'Diabetes in pregnancy', note: 'Gestational diabetes support' },
+      { title: 'I care for someone', note: 'Parent, child or partner' },
+      { title: 'I just want to stay healthy', note: 'Know the signs and lower my risk' }
+    ];
+    const p = this.state.picked;
+    return {
+      options: opts.map((o, i) => {
+        const on = !!p[i];
+        return { ...o, pressed: on ? 'true' : 'false', border: on ? '#1E4FD8' : '#E3E8F0', bg: on ? '#F3F6FE' : '#FFFFFF',
+          ring: on ? '#1E4FD8' : '#B8C2D3', fill: on ? '#1E4FD8' : '#FFFFFF',
+          toggle: () => this.setState({ picked: { ...this.state.picked, [i]: !this.state.picked[i] } }) };
+      })
+    };
+  }
+}
+</script>
+
+
+</body></html>
