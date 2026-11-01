@@ -25,6 +25,10 @@ abstract final class DayColors {
   static const danger = Color(0xFFB42318);
   static const dangerText = Color(0xFF8F1B12);
   static const dangerBg = Color(0xFFFDECEC);
+  static const dangerBody = Color(0xFF3B0D09);
+  static const divider = Color(0xFFEEF1F6);
+  static const tagBg = Color(0xFFF1F3F8);
+  static const plateRing = Color(0xFFE8ECF3);
   static const scrim = Color(0x730F1A2E);
 
   static const moodGood = Color(0xFF22C55E);

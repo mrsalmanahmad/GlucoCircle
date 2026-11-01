@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/routes.dart';
@@ -6,55 +7,176 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_palette.dart';
 import '../../core/theme/app_sizes.dart';
 import '../../core/theme/app_text.dart';
+import '../../core/widgets/app_chip.dart';
 import '../../core/widgets/app_icon.dart';
 import '../../core/widgets/caution_text.dart';
-import '../../core/widgets/coming_soon.dart';
 import '../../core/widgets/page_header.dart';
 import '../../core/widgets/round_icon_button.dart';
+import '../../core/widgets/state_views.dart';
+import '../../data/models.dart';
+import '../../data/providers.dart';
+import '../../data/session_controller.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../../l10n/labels.dart';
+import 'post_card.dart';
 
-/// Screen 02. The feed itself is Day 6 in docs/MVP_PLAN.md.
-class CommunityScreen extends StatelessWidget {
+/// Screen 02.
+class CommunityScreen extends ConsumerStatefulWidget {
   const CommunityScreen({super.key});
+
+  @override
+  ConsumerState<CommunityScreen> createState() => _CommunityScreenState();
+}
+
+class _CommunityScreenState extends ConsumerState<CommunityScreen> {
+  /// Null means All. If someone follows exactly one topic, start on it.
+  late Topic? _topic = () {
+    final topics = (ref.read(sessionProvider)?.interests ?? const <Interest>{})
+        .map((interest) => interest.topic)
+        .nonNulls
+        .toSet();
+    return topics.length == 1 ? topics.first : null;
+  }();
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final posts = ref.watch(postsProvider);
     return Scaffold(
       floatingActionButton: _ShareStoryButton(
         label: l10n.communityShareStory,
         onPressed: () => context.push(Routes.share),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(AppSizes.screenPadding),
-          children: [
-            PageHeader(
-              title: l10n.communityTitle,
-              subtitle: l10n.communitySubtitle,
-              actions: [
-                RoundIconButton(
-                  icon: AppIcons.settings,
-                  label: l10n.settingsTitle,
-                  onPressed: () => context.push(Routes.settings),
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSizes.screenPadding,
+                AppSizes.screenPadding,
+                AppSizes.screenPadding,
+                0,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: PageHeader(
+                  title: l10n.communityTitle,
+                  subtitle: l10n.communitySubtitle,
+                  actions: [
+                    RoundIconButton(
+                      icon: AppIcons.settings,
+                      label: l10n.settingsTitle,
+                      onPressed: () => context.push(Routes.settings),
+                    ),
+                    RoundIconButton(
+                      icon: AppIcons.bell,
+                      label: l10n.notificationsTitle,
+                      onPressed: () => context.push(Routes.notifications),
+                    ),
+                  ],
                 ),
-                RoundIconButton(
-                  icon: AppIcons.bell,
-                  label: l10n.notificationsTitle,
-                  onPressed: () => context.push(Routes.notifications),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.fromLTRB(
+                  AppSizes.screenPadding,
+                  8,
+                  AppSizes.screenPadding,
+                  4,
+                ),
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    AppChip(
+                      label: l10n.topicAll,
+                      selected: _topic == null,
+                      onTap: () => setState(() => _topic = null),
+                    ),
+                    for (final topic in Topic.values)
+                      AppChip(
+                        label: l10n.topicLabel(topic),
+                        selected: _topic == topic,
+                        onTap: () => setState(() => _topic = topic),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSizes.screenPadding,
+              ),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  spacing: 12,
+                  children: [
+                    _FirefliesBanner(
+                      onTap: () => context.push(Routes.fireflies),
+                    ),
+                    const CautionText(),
+                    const SizedBox(height: 0),
+                  ],
+                ),
+              ),
+            ),
+            ...posts.when(
+              loading: () => const [SliverToBoxAdapter(child: LoadingView())],
+              error: (_, _) => [
+                SliverToBoxAdapter(
+                  child: ErrorView(
+                    onRetry: () => ref.invalidate(postsProvider),
+                  ),
                 ),
               ],
+              data: _feed,
             ),
-            const SizedBox(height: 16),
-            _FirefliesBanner(onTap: () => context.push(Routes.fireflies)),
-            const SizedBox(height: 16),
-            const CautionText(),
-            const SizedBox(height: 16),
-            const ComingSoonText(),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _feed(List<Post> all) {
+    final l10n = AppLocalizations.of(context);
+    final posts = _topic == null
+        ? all
+        : all.where((post) => post.topic == _topic).toList();
+    if (posts.isEmpty) {
+      return [
+        SliverToBoxAdapter(
+          child: _topic == null
+              ? EmptyView(title: l10n.feedEmptyTitle, body: l10n.feedEmptyBody)
+              : EmptyView(
+                  title: l10n.feedEmptyTopicTitle,
+                  body: l10n.feedEmptyBody,
+                ),
+        ),
+      ];
+    }
+    return [
+      SliverPadding(
+        // Space so the floating button doesn't cover the last post.
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.screenPadding,
+          0,
+          AppSizes.screenPadding,
+          88,
+        ),
+        sliver: SliverList.separated(
+          itemCount: posts.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 12),
+          itemBuilder: (context, index) {
+            final post = posts[index];
+            return PostCard(
+              post: post,
+              onOpen: () => context.push(Routes.post(post.id)),
+            );
+          },
+        ),
+      ),
+    ];
   }
 }
 

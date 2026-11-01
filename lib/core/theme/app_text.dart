@@ -40,6 +40,16 @@ abstract final class AppText {
     fontSize: 20,
     fontWeight: FontWeight.w800,
   );
+  static const sectionTitle = TextStyle(
+    fontFamily: AppFonts.jakarta,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+  static const cardTitle = TextStyle(
+    fontFamily: AppFonts.jakarta,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
   static const button = TextStyle(
     fontFamily: AppFonts.jakarta,
     fontSize: 16,

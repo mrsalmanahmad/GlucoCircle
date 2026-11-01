@@ -1,18 +1,18 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:glucocircle/app/app.dart';
 import 'package:glucocircle/core/theme/app_colors.dart';
 import 'package:glucocircle/core/theme/app_palette.dart';
 import 'package:glucocircle/features/fireflies/fireflies_screen.dart';
 import 'package:glucocircle/features/community/share_screen.dart';
 import 'package:glucocircle/core/widgets/caution_text.dart';
 
+import 'helpers.dart';
+
 const _caution =
     "General information and members' own experiences, not medical advice. "
     'Always consult your doctor.';
 
 Future<void> _startApp(WidgetTester tester) async {
-  await tester.pumpWidget(const ProviderScope(child: GlucoCircleApp()));
+  await tester.pumpWidget(testApp());
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 400));
 }
@@ -28,7 +28,8 @@ void main() {
     await _startApp(tester);
 
     expect(find.text('You are not alone in this.'), findsOneWidget);
-    expect(find.bySemanticsLabel('Community'), findsOneWidget);
+    // Once as the page title, once as the tab.
+    expect(find.bySemanticsLabel('Community'), findsNWidgets(2));
     expect(find.bySemanticsLabel('Share'), findsOneWidget);
     expect(find.bySemanticsLabel('Signs'), findsOneWidget);
     expect(find.bySemanticsLabel('Healthy'), findsOneWidget);

@@ -222,6 +222,12 @@ On the sky, brightness shows waiting time: size is `min(20, 8 + waitedMinutes / 
 | S5 | 09 | The count is fake: `30 + visible.length * 4`. All people on the sky are sample data. | Show real counts only. Never show invented people. Build an honest empty sky. |
 | S6 | 09, 12 | Name, city, local time, language, diabetes type and years together can identify someone, next to very private text. | Show a first name or nickname, plus country. Nothing else. |
 
+### Copy changed from the wireframes
+
+- **08 "Someone may be in danger":** the note said "We will show them help options", but no such feature exists. It now says "A moderator will look at this first", and the sent screen shows the emergency number straight away, because a 24-hour review is too slow for this reason.
+- **02, 03 mood tags:** the composer's moods are Good, Okay, Low and Struggling, but sample posts said "Feeling anxious". Tags now match the composer.
+- **02 Fireflies banner:** "Talk to someone..." promised chat that v1.0 doesn't have. It now says "Glow quietly with others who feel the same".
+
 ### Placeholders to fill
 
 | Screen | Text | Value |

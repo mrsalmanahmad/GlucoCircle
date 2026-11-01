@@ -8,11 +8,15 @@ enum AppIcons {
   back,
   bell,
   chevronRight('chevron_right'),
+  comment,
   community,
   healthy,
+  heart,
+  more,
   settings,
   share,
-  signs;
+  signs,
+  warning;
 
   const AppIcons([this._file]);
 

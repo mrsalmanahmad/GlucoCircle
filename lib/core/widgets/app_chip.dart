@@ -34,7 +34,6 @@ class AppChip extends StatelessWidget {
           child: Container(
             constraints: const BoxConstraints(minHeight: AppSizes.chipHeight),
             padding: const EdgeInsets.symmetric(horizontal: 14),
-            alignment: Alignment.center,
             decoration: BoxDecoration(
               color: background,
               borderRadius: BorderRadius.circular(AppSizes.chipHeight / 2),
@@ -42,10 +41,15 @@ class AppChip extends StatelessWidget {
                 color: selected ? background : palette.chipBorder,
               ),
             ),
-            child: Text(
-              label,
-              style: AppText.chip.copyWith(
-                color: selected ? palette.chipSelectedFg : palette.chipFg,
+            // The factors keep the chip as wide as its text, even in a Wrap.
+            child: Align(
+              widthFactor: 1,
+              heightFactor: 1,
+              child: Text(
+                label,
+                style: AppText.chip.copyWith(
+                  color: selected ? palette.chipSelectedFg : palette.chipFg,
+                ),
               ),
             ),
           ),
